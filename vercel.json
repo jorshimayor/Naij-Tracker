@@ -4,7 +4,7 @@
   "installCommand": "echo 'skipping default install — handled in buildCommand'",
   "outputDirectory": "apps/web/.next",
   "framework": "nextjs",
-  "ignoreCommand": "git diff --quiet HEAD^ HEAD ':!apps/api' ':!prisma/seed.ts' ':!prisma/fixtures'",
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD -- apps/web prisma/schema.prisma package.json package-lock.json vercel.json tsconfig.base.json",
   "regions": ["fra1"],
   "headers": [
     {
