@@ -49,11 +49,24 @@ The Groq, Tavily, and Resend keys you already have — **rotate them now** in th
 
 ## 1. Deploy the API to Render
 
-### 1.1 Create the service
+The root `package.json` defines `start` (launches the API) and a `postinstall` hook
+(runs `prisma generate`), so **Render's default `npm install && npm run build` → `npm start`
+flow works without custom config**. Two equivalent ways to create the service:
+
+### 1.1a Blueprint (reads `render.yaml`)
 
 1. https://dashboard.render.com → **New +** → **Blueprint**
 2. Connect your GitHub repo
 3. Render reads `render.yaml` and shows the service plan. Click **Apply**
+
+### 1.1b Manual web service
+
+1. **New +** → **Web Service** → connect the repo
+2. Settings:
+   - **Build command**: `npm install && npm run build`
+   - **Start command**: `npm start`
+   - **Health check path**: `/health`
+   - **Environment**: Node, Free plan, Frankfurt region
 
 ### 1.2 Set secrets in the Render dashboard
 

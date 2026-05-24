@@ -8,13 +8,18 @@
     "packages/*"
   ],
   "scripts": {
+    "postinstall": "prisma generate --schema=prisma/schema.prisma",
     "dev": "npm-run-all -p dev:api dev:web",
     "dev:api": "npm run dev -w @nbt/api",
     "dev:web": "npm run dev -w @nbt/web",
     "build": "npm run build -w @nbt/api && npm run build -w @nbt/web",
+    "start": "node apps/api/dist/main.js",
+    "start:api": "node apps/api/dist/main.js",
+    "start:web": "npm start -w @nbt/web",
     "typecheck": "npm run typecheck -w @nbt/api && npm run typecheck -w @nbt/web",
     "db:generate": "prisma generate --schema=prisma/schema.prisma",
     "db:migrate": "prisma migrate dev --schema=prisma/schema.prisma",
+    "db:migrate:deploy": "prisma migrate deploy --schema=prisma/schema.prisma",
     "db:reset": "prisma migrate reset --schema=prisma/schema.prisma --force",
     "db:studio": "prisma studio --schema=prisma/schema.prisma",
     "db:seed": "tsx prisma/seed.ts",

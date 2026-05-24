@@ -52,7 +52,8 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('docs', app, document);
 
-  const port = Number(process.env.API_PORT ?? 4000);
+  // Render / Railway / Fly inject PORT automatically. Fall back to API_PORT for local dev.
+  const port = Number(process.env.PORT ?? process.env.API_PORT ?? 4000);
   const host = process.env.API_HOST ?? '0.0.0.0';
   await app.listen(port, host);
   Logger.log(`API listening on http://${host}:${port}`, 'Bootstrap');

@@ -9,16 +9,17 @@ services:
     plan: free
     region: frankfurt
     branch: main
-    buildCommand: npm install --no-audit --no-fund && npx prisma generate --schema=prisma/schema.prisma && npm run build -w @nbt/api
-    startCommand: node apps/api/dist/main.js
+    # `npm install` runs the postinstall (prisma generate); `npm run build` builds both apps.
+    buildCommand: npm install --no-audit --no-fund && npm run build
+    # Top-level `start` script in package.json launches the compiled API.
+    startCommand: npm start
     healthCheckPath: /health
     envVars:
       - key: NODE_ENV
         value: production
-      - key: API_PORT
-        value: "10000"        # Render's default container port
       - key: API_HOST
         value: 0.0.0.0
+      # Render injects PORT automatically — our main.ts reads it.
       - key: CORS_ORIGIN
         value: https://naijabilltracker.com.ng,https://www.naijabilltracker.com.ng
       - key: PUBLIC_WEB_URL
