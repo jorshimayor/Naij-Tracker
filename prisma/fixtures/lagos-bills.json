@@ -1,0 +1,91 @@
+[
+  {
+    "billNumber": "LSHA.014",
+    "title": "A Bill for a Law to Regulate Short-Term Rentals and Establish a Lagos State Tourism Accommodation Register, and for Connected Purposes",
+    "introducedDate": "2026-02-26",
+    "currentStage": "SECOND_READING",
+    "sponsorSlugs": ["noheem-adams"],
+    "summaryShort": "Requires hosts of short-term rentals (Airbnb-style) operating in Lagos to register with the State, meet basic safety standards, and remit a 5% tourism levy.",
+    "fullText": "A Law to require any person offering accommodation in Lagos State for a continuous period of fewer than 28 days, in exchange for payment, to register the property with a new Lagos State Tourism Accommodation Register maintained by the Ministry of Tourism, Arts and Culture. Registration shall confirm compliance with basic safety standards, including functional smoke detectors, fire extinguishers, and a clearly displayed evacuation plan. Platform operators (online intermediaries) shall be required to verify host registration before listing a property. A tourism levy of 5 percent of the booking value shall be remitted by the host monthly, with platform operators required to withhold and remit on behalf of hosts where the booking is processed through the platform.",
+    "stageEvents": [
+      { "stage": "INTRODUCED", "occurredOn": "2026-02-26" },
+      { "stage": "FIRST_READING", "occurredOn": "2026-02-26" },
+      { "stage": "SECOND_READING", "occurredOn": "2026-03-18" }
+    ],
+    "documents": [
+      { "type": "PDF", "url": "https://lagoshouseofassembly.gov.ng/bills/LSHA014.pdf", "description": "Bill text" }
+    ]
+  },
+  {
+    "billNumber": "LSHA.022",
+    "title": "A Bill for a Law to Establish the Lagos State Pedestrian Safety Fund and Mandate Pedestrian Crossings on All Reconstructed Arterial Roads, and for Connected Purposes",
+    "introducedDate": "2026-03-09",
+    "currentStage": "COMMITTEE",
+    "sponsorSlugs": ["tolani-saliu", "mojisola-meranda"],
+    "summaryShort": "Creates a dedicated fund for zebra crossings, footbridges and traffic-calming on Lagos arterials, financed by a portion of motor vehicle administration fees.",
+    "fullText": "A Law to establish a Pedestrian Safety Fund within the Lagos State Ministry of Transportation. The Fund shall be financed by 7.5 percent of all motor vehicle administration fees collected by the State, plus appropriations from the State Assembly. The Fund's purpose is exclusively pedestrian safety: zebra crossings, footbridges, raised intersections, traffic-calming installations, and pedestrian-priority signal phasing. Every reconstruction of an arterial road financed in whole or in part by the State shall include pedestrian crossings at intervals not exceeding 500 metres, and a pedestrian impact assessment shall be a condition of approval for any such project.",
+    "stageEvents": [
+      { "stage": "INTRODUCED", "occurredOn": "2026-03-09" },
+      { "stage": "FIRST_READING", "occurredOn": "2026-03-09" },
+      { "stage": "SECOND_READING", "occurredOn": "2026-03-25" },
+      { "stage": "COMMITTEE", "occurredOn": "2026-04-02", "notes": "Committee on Transportation; LASTMA and civil society stakeholders to be invited." }
+    ],
+    "documents": [
+      { "type": "PDF", "url": "https://lagoshouseofassembly.gov.ng/bills/LSHA022.pdf", "description": "Bill text" }
+    ]
+  },
+  {
+    "billNumber": "LSHA.005",
+    "title": "A Bill for a Law to Provide for Tenancy Reform in Lagos State to Cap Advance Rent Demands and Regulate Estate Agents, and for Connected Purposes",
+    "introducedDate": "2026-01-13",
+    "currentStage": "PASSED",
+    "sponsorSlugs": ["mojisola-meranda", "tolani-saliu"],
+    "summaryShort": "Caps advance rent demands at six months for residential tenancies, regulates estate agents through a state licensing scheme, and standardises the agency fee at 5%.",
+    "fullText": "A Law to amend the Lagos State Tenancy Law to cap advance rent demands on residential tenancies at six months for new tenants and three months for renewing tenants. The Law also introduces a licensing scheme for estate agents operating in the State, requiring annual registration with a State Real Estate Regulatory Authority, completion of a continuing professional development requirement, and adherence to a published code of conduct. The agency fee chargeable to a tenant or landlord is standardised at 5 percent of the annual rent. Operating as an estate agent without a licence is an offence punishable by fine. Existing tenancies are not affected.",
+    "stageEvents": [
+      { "stage": "INTRODUCED", "occurredOn": "2026-01-13" },
+      { "stage": "FIRST_READING", "occurredOn": "2026-01-13" },
+      { "stage": "SECOND_READING", "occurredOn": "2026-01-28" },
+      { "stage": "COMMITTEE", "occurredOn": "2026-02-05" },
+      { "stage": "THIRD_READING", "occurredOn": "2026-03-12" },
+      { "stage": "PASSED", "occurredOn": "2026-03-12", "notes": "Transmitted to the Governor for assent." }
+    ],
+    "documents": [
+      { "type": "PDF", "url": "https://lagoshouseofassembly.gov.ng/bills/LSHA005.pdf", "description": "Final passed text" }
+    ]
+  },
+  {
+    "billNumber": "LSHA.028",
+    "title": "A Bill for a Law to Establish a Lagos State Indigenous Language Education Programme for Public Primary Schools, and for Connected Purposes",
+    "introducedDate": "2026-03-19",
+    "currentStage": "FIRST_READING",
+    "sponsorSlugs": ["tolani-saliu"],
+    "summaryShort": "Provides for the teaching of Yoruba and a second indigenous language at all public primary schools in the State, with curriculum and teacher training funded by the State.",
+    "fullText": "A Law to provide that every public primary school in Lagos State shall teach Yoruba as a compulsory subject from Primary 1 to Primary 6, and shall offer at least one additional Nigerian indigenous language (Igbo, Hausa, or another major language ordinarily spoken by a substantial number of pupils in the school's catchment) as an elective from Primary 4. The State shall fund the development of a standardised curriculum, the training and retraining of teachers, and the production of approved textbooks. Implementation shall be phased across three academic years following commencement.",
+    "stageEvents": [
+      { "stage": "INTRODUCED", "occurredOn": "2026-03-19" },
+      { "stage": "FIRST_READING", "occurredOn": "2026-03-19" }
+    ],
+    "documents": [
+      { "type": "PDF", "url": "https://lagoshouseofassembly.gov.ng/bills/LSHA028.pdf", "description": "Bill text" }
+    ]
+  },
+  {
+    "billNumber": "LSHA.011",
+    "title": "A Bill for a Law to Mandate Air Quality Monitoring and Public Reporting in Lagos State, and for Connected Purposes",
+    "introducedDate": "2026-02-04",
+    "currentStage": "COMMITTEE",
+    "sponsorSlugs": ["noheem-adams", "mojisola-meranda"],
+    "summaryShort": "Requires the State Environmental Protection Agency to operate a public network of air quality sensors and publish a daily index by local government area.",
+    "fullText": "A Law to mandate the Lagos State Environmental Protection Agency to install and operate a public network of at least three air quality monitoring sensors in every local government area of the State, measuring particulate matter (PM2.5 and PM10), nitrogen dioxide, sulphur dioxide, and ozone. Hourly readings shall be published on a public dashboard in machine-readable format, and a daily Lagos Air Quality Index summarising health risk shall be published before 09:00 on each working day. School heads shall receive automated notifications when index values exceed thresholds prescribed by regulation, with corresponding advisories on outdoor activity. The data shall be made available under an open licence permitting public reuse.",
+    "stageEvents": [
+      { "stage": "INTRODUCED", "occurredOn": "2026-02-04" },
+      { "stage": "FIRST_READING", "occurredOn": "2026-02-04" },
+      { "stage": "SECOND_READING", "occurredOn": "2026-02-20" },
+      { "stage": "COMMITTEE", "occurredOn": "2026-03-01", "notes": "Committee on Environment; partnership with academic institutions under consideration." }
+    ],
+    "documents": [
+      { "type": "PDF", "url": "https://lagoshouseofassembly.gov.ng/bills/LSHA011.pdf", "description": "Bill text" }
+    ]
+  }
+]

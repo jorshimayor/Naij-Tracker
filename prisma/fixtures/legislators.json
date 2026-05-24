@@ -1,0 +1,137 @@
+[
+  {
+    "slug": "godswill-akpabio",
+    "fullName": "Godswill Akpabio",
+    "party": "APC",
+    "chamber": "federal-senate",
+    "constituency": "Akwa Ibom North-West",
+    "state": "Akwa Ibom",
+    "contactEmail": "akpabio@senate.gov.ng"
+  },
+  {
+    "slug": "opeyemi-bamidele",
+    "fullName": "Opeyemi Bamidele",
+    "party": "APC",
+    "chamber": "federal-senate",
+    "constituency": "Ekiti Central",
+    "state": "Ekiti",
+    "contactEmail": "bamidele@senate.gov.ng"
+  },
+  {
+    "slug": "abdul-ningi",
+    "fullName": "Abdul Ningi",
+    "party": "PDP",
+    "chamber": "federal-senate",
+    "constituency": "Bauchi Central",
+    "state": "Bauchi",
+    "contactEmail": "ningi@senate.gov.ng"
+  },
+  {
+    "slug": "ireti-kingibe",
+    "fullName": "Ireti Heebah Kingibe",
+    "party": "LP",
+    "chamber": "federal-senate",
+    "constituency": "FCT",
+    "state": "FCT",
+    "contactEmail": "kingibe@senate.gov.ng"
+  },
+  {
+    "slug": "adamu-aliero",
+    "fullName": "Adamu Aliero",
+    "party": "PDP",
+    "chamber": "federal-senate",
+    "constituency": "Kebbi Central",
+    "state": "Kebbi",
+    "contactEmail": "aliero@senate.gov.ng"
+  },
+  {
+    "slug": "tahir-monguno",
+    "fullName": "Tahir Monguno",
+    "party": "APC",
+    "chamber": "federal-senate",
+    "constituency": "Borno North",
+    "state": "Borno",
+    "contactEmail": "monguno@senate.gov.ng"
+  },
+  {
+    "slug": "oluremi-tinubu",
+    "fullName": "Oluremi Tinubu",
+    "party": "APC",
+    "chamber": "federal-senate",
+    "constituency": "Lagos Central (former)",
+    "state": "Lagos",
+    "contactEmail": "remi.tinubu@senate.gov.ng"
+  },
+  {
+    "slug": "tajudeen-abbas",
+    "fullName": "Tajudeen Abbas",
+    "party": "APC",
+    "chamber": "federal-reps",
+    "constituency": "Zaria Federal Constituency",
+    "state": "Kaduna",
+    "contactEmail": "abbas@reps.gov.ng"
+  },
+  {
+    "slug": "benjamin-kalu",
+    "fullName": "Benjamin Kalu",
+    "party": "APC",
+    "chamber": "federal-reps",
+    "constituency": "Bende Federal Constituency",
+    "state": "Abia",
+    "contactEmail": "kalu@reps.gov.ng"
+  },
+  {
+    "slug": "kingsley-chinda",
+    "fullName": "Kingsley Chinda",
+    "party": "PDP",
+    "chamber": "federal-reps",
+    "constituency": "Obio/Akpor Federal Constituency",
+    "state": "Rivers",
+    "contactEmail": "chinda@reps.gov.ng"
+  },
+  {
+    "slug": "amobi-ogah",
+    "fullName": "Amobi Ogah",
+    "party": "LP",
+    "chamber": "federal-reps",
+    "constituency": "Isuikwuato/Umunneochi Federal Constituency",
+    "state": "Abia",
+    "contactEmail": "ogah@reps.gov.ng"
+  },
+  {
+    "slug": "ginger-onwusibe",
+    "fullName": "Ginger Onwusibe",
+    "party": "LP",
+    "chamber": "federal-reps",
+    "constituency": "Isiala-Ngwa North/South Federal Constituency",
+    "state": "Abia",
+    "contactEmail": "onwusibe@reps.gov.ng"
+  },
+  {
+    "slug": "mojisola-meranda",
+    "fullName": "Mojisola Lasbat Meranda",
+    "party": "APC",
+    "chamber": "lagos-state-hoa",
+    "constituency": "Apapa Constituency 1",
+    "state": "Lagos",
+    "contactEmail": "meranda@lagoshouseofassembly.gov.ng"
+  },
+  {
+    "slug": "noheem-adams",
+    "fullName": "Noheem Adams",
+    "party": "APC",
+    "chamber": "lagos-state-hoa",
+    "constituency": "Eti-Osa 2",
+    "state": "Lagos",
+    "contactEmail": "noheem@lagoshouseofassembly.gov.ng"
+  },
+  {
+    "slug": "tolani-saliu",
+    "fullName": "Tolani Saliu",
+    "party": "APC",
+    "chamber": "lagos-state-hoa",
+    "constituency": "Lagos Mainland 1",
+    "state": "Lagos",
+    "contactEmail": "saliu@lagoshouseofassembly.gov.ng"
+  }
+]

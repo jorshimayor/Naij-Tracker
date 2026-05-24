@@ -1,0 +1,125 @@
+[
+  {
+    "billNumber": "HB.0421",
+    "title": "A Bill for an Act to Establish a National Minimum Wage Adjustment Commission to Review the Minimum Wage Every Two Years, and for Related Matters",
+    "introducedDate": "2026-02-20",
+    "currentStage": "SECOND_READING",
+    "sponsorSlugs": ["benjamin-kalu", "kingsley-chinda"],
+    "summaryShort": "Creates a standing commission to review and adjust the national minimum wage every two years based on inflation and a basket of basic goods.",
+    "fullText": "An Act to establish a National Minimum Wage Adjustment Commission as an independent body charged with reviewing the national minimum wage every 24 months. The Commission shall be composed of representatives of organised labour, employers' associations, the Ministry of Labour and Employment, the National Bureau of Statistics, and civil society. Its review shall consider headline inflation, the cost of a defined basket of basic goods, and labour productivity. Recommendations of the Commission shall be transmitted to the President for forwarding to the National Assembly as an amendment to the National Minimum Wage Act. Public consultation shall precede every review cycle, and the Commission's deliberations and final report shall be public documents. The first review under this Act shall be completed within twelve months of commencement.",
+    "stageEvents": [
+      { "stage": "INTRODUCED", "occurredOn": "2026-02-20" },
+      { "stage": "FIRST_READING", "occurredOn": "2026-02-20" },
+      { "stage": "SECOND_READING", "occurredOn": "2026-03-12", "notes": "Passed second reading after a contentious debate; referred to Committee on Labour, Employment and Productivity." }
+    ],
+    "documents": [
+      { "type": "PDF", "url": "https://nass.gov.ng/house/bills/HB0421.pdf", "description": "Bill text" }
+    ]
+  },
+  {
+    "billNumber": "HB.0317",
+    "title": "A Bill for an Act to Repeal the Petroleum Products Pricing Regulatory Agency Act and Enact a Petroleum Products Consumer Protection Act, and for Related Matters",
+    "introducedDate": "2026-01-29",
+    "currentStage": "COMMITTEE",
+    "sponsorSlugs": ["benjamin-kalu", "kingsley-chinda"],
+    "summaryShort": "Replaces PPPRA with a leaner consumer-protection authority focused on quality, station compliance, and price transparency in a fully deregulated downstream market.",
+    "fullText": "An Act to repeal the Petroleum Products Pricing Regulatory Agency Act and replace it with a Petroleum Products Consumer Protection Authority charged with three core functions: (i) ensuring fuel quality at retail outlets through random sampling and laboratory testing, (ii) publishing a public daily pump-price index drawn from a representative sample of stations across all 36 states and the FCT, and (iii) handling consumer complaints relating to short measure, adulteration, and false advertising. The new Authority shall have no role in setting prices, which are deregulated. Penalties for adulteration are increased fivefold, and a whistleblower protection scheme is created for filling-station staff who report violations.",
+    "stageEvents": [
+      { "stage": "INTRODUCED", "occurredOn": "2026-01-29" },
+      { "stage": "FIRST_READING", "occurredOn": "2026-01-29" },
+      { "stage": "SECOND_READING", "occurredOn": "2026-02-14" },
+      { "stage": "COMMITTEE", "occurredOn": "2026-02-22", "notes": "Joint committee on Petroleum (Downstream) and Commerce." }
+    ],
+    "documents": [
+      { "type": "PDF", "url": "https://nass.gov.ng/house/bills/HB0317.pdf", "description": "Bill text" },
+      { "type": "PRESS_RELEASE", "url": "https://nass.gov.ng/house/news/hb317-debate", "description": "House press release on second reading" }
+    ]
+  },
+  {
+    "billNumber": "HB.0509",
+    "title": "A Bill for an Act to Provide for Open Government Data and Mandatory Publication of Federal Procurement Records, and for Related Matters",
+    "introducedDate": "2026-03-05",
+    "currentStage": "FIRST_READING",
+    "sponsorSlugs": ["benjamin-kalu", "kingsley-chinda"],
+    "summaryShort": "Mandates publication of federal procurement contracts above N5m to a single public portal in machine-readable format within 14 days of award.",
+    "fullText": "An Act to require every federal Ministry, Department and Agency to publish on a designated open data portal, within 14 days of contract award, the full text and structured metadata of every procurement contract with a value of N5,000,000 or above. Required fields include contract number, vendor, ultimate beneficial owners of the vendor, award amount, duration, scope of work, and the procurement method used. Data shall be published in CSV and JSON formats under an open licence permitting commercial reuse. Refusal or persistent failure to publish shall constitute misconduct under the Public Procurement Act 2007 and may attract personal sanctions on the responsible officer.",
+    "stageEvents": [
+      { "stage": "INTRODUCED", "occurredOn": "2026-03-05" },
+      { "stage": "FIRST_READING", "occurredOn": "2026-03-05" }
+    ],
+    "documents": [
+      { "type": "PDF", "url": "https://nass.gov.ng/house/bills/HB0509.pdf", "description": "Bill text" }
+    ]
+  },
+  {
+    "billNumber": "HB.0188",
+    "title": "A Bill for an Act to Amend the Federal Roads Maintenance Agency Act to Earmark a Dedicated Trust Fund from Fuel Excise Duty, and for Related Matters",
+    "introducedDate": "2026-01-19",
+    "currentStage": "PASSED",
+    "sponsorSlugs": ["benjamin-kalu", "kingsley-chinda"],
+    "summaryShort": "Earmarks 50% of fuel excise duty proceeds to a ring-fenced trust fund for routine maintenance on the federal road network.",
+    "fullText": "An Act to amend the Federal Roads Maintenance Agency Act to establish a Federal Roads Maintenance Trust Fund. The Trust Fund shall be financed by an earmarked portion of 50 percent of the proceeds of fuel excise duty collected at the federal level, paid into a dedicated account at the Central Bank of Nigeria not later than 30 days after collection. Expenditure from the Fund shall be restricted to routine maintenance — patching, drainage, line-marking, vegetation control — and shall not be used for new construction. The Agency shall publish quarterly expenditure reports broken down by road corridor and contractor.",
+    "stageEvents": [
+      { "stage": "INTRODUCED", "occurredOn": "2026-01-19" },
+      { "stage": "FIRST_READING", "occurredOn": "2026-01-19" },
+      { "stage": "SECOND_READING", "occurredOn": "2026-02-01" },
+      { "stage": "COMMITTEE", "occurredOn": "2026-02-09" },
+      { "stage": "THIRD_READING", "occurredOn": "2026-03-15" },
+      { "stage": "PASSED", "occurredOn": "2026-03-15", "notes": "Transmitted to Senate for concurrence." }
+    ],
+    "documents": [
+      { "type": "PDF", "url": "https://nass.gov.ng/house/bills/HB0188.pdf", "description": "Bill text" }
+    ]
+  },
+  {
+    "billNumber": "HB.0552",
+    "title": "A Bill for an Act to Establish a National Children's Mental Health Programme in Public Primary and Secondary Schools, and for Related Matters",
+    "introducedDate": "2026-03-21",
+    "currentStage": "SECOND_READING",
+    "sponsorSlugs": ["benjamin-kalu", "kingsley-chinda"],
+    "summaryShort": "Funds the placement of trained counsellors in public schools and rolls out a standardised mental-health curriculum for adolescents.",
+    "fullText": "An Act to establish a National Children's Mental Health Programme to be implemented jointly by the Federal Ministries of Health and Education. The Programme shall fund the training and deployment of at least one qualified counsellor for every public school with an enrolment of 500 or more, and a curriculum on emotional regulation, help-seeking, and recognising distress in peers, delivered as part of civic education from Primary 4 to Senior Secondary 3. Bursaries shall be provided for Nigerians training as school counsellors at recognised institutions, in exchange for a five-year service commitment to the public school system. Funding flows through the Universal Basic Education Commission with state-level matching contributions.",
+    "stageEvents": [
+      { "stage": "INTRODUCED", "occurredOn": "2026-03-21" },
+      { "stage": "FIRST_READING", "occurredOn": "2026-03-21" },
+      { "stage": "SECOND_READING", "occurredOn": "2026-04-11" }
+    ],
+    "documents": [
+      { "type": "PDF", "url": "https://nass.gov.ng/house/bills/HB0552.pdf", "description": "Bill text" }
+    ]
+  },
+  {
+    "billNumber": "HB.0234",
+    "title": "A Bill for an Act to Amend the Companies and Allied Matters Act to Require Beneficial Ownership Disclosure for All Federal Contractors, and for Related Matters",
+    "introducedDate": "2026-02-04",
+    "currentStage": "COMMITTEE",
+    "sponsorSlugs": ["benjamin-kalu", "kingsley-chinda"],
+    "summaryShort": "Requires every company bidding on or holding a federal contract to disclose its ultimate beneficial owners to the Corporate Affairs Commission, with the register made public.",
+    "fullText": "An Act to amend the Companies and Allied Matters Act to require the Corporate Affairs Commission to maintain a public register of the ultimate beneficial owners of any company that has submitted a bid for, or holds, a federal contract of any value. Ownership disclosure shall identify every natural person holding, directly or indirectly, 5 percent or more of the equity, and any natural person otherwise exercising effective control. The register shall be searchable by company name, contract number, and beneficial owner name. Non-disclosure or false disclosure shall disqualify the company from federal contracting for five years and attract personal sanctions on the directors who certified the filing.",
+    "stageEvents": [
+      { "stage": "INTRODUCED", "occurredOn": "2026-02-04" },
+      { "stage": "FIRST_READING", "occurredOn": "2026-02-04" },
+      { "stage": "SECOND_READING", "occurredOn": "2026-02-19" },
+      { "stage": "COMMITTEE", "occurredOn": "2026-02-27", "notes": "Joint committee on Anti-Corruption and Commerce; public hearing scheduled for 2026-05-15." }
+    ],
+    "documents": [
+      { "type": "PDF", "url": "https://nass.gov.ng/house/bills/HB0234.pdf", "description": "Bill text" }
+    ]
+  },
+  {
+    "billNumber": "HB.0476",
+    "title": "A Bill for an Act to Provide for Statutory Protection of Whistleblowers in the Federal Public Service and Federal Contracting, and for Related Matters",
+    "introducedDate": "2026-03-02",
+    "currentStage": "FIRST_READING",
+    "sponsorSlugs": ["benjamin-kalu", "kingsley-chinda"],
+    "summaryShort": "Creates statutory protection against retaliation for federal employees and contractors who report fraud, corruption or safety violations through approved channels.",
+    "fullText": "An Act to provide statutory protection for whistleblowers in the federal public service and in companies holding federal contracts. The Act establishes designated reporting channels at the Office of the Auditor-General, the EFCC, and the ICPC, prohibits retaliatory dismissal, demotion or harassment, and provides civil remedies including reinstatement, back pay, and exemplary damages for proven retaliation. A monetary award equal to 2.5 percent of recovered funds, capped at N20,000,000, is payable to the whistleblower where the disclosure leads directly to recovery. The Act repeals the existing administrative Whistleblower Policy and gives it the force of statute.",
+    "stageEvents": [
+      { "stage": "INTRODUCED", "occurredOn": "2026-03-02" },
+      { "stage": "FIRST_READING", "occurredOn": "2026-03-02" }
+    ],
+    "documents": [
+      { "type": "PDF", "url": "https://nass.gov.ng/house/bills/HB0476.pdf", "description": "Bill text" }
+    ]
+  }
+]

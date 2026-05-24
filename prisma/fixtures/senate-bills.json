@@ -1,0 +1,144 @@
+[
+  {
+    "billNumber": "SB.142",
+    "title": "A Bill for an Act to Establish the Nigeria Startup Investment Fund for the Provision of Patient Capital to Indigenous Technology Companies, and for Related Matters",
+    "introducedDate": "2026-02-12",
+    "currentStage": "SECOND_READING",
+    "sponsorSlugs": ["opeyemi-bamidele", "ireti-kingibe"],
+    "summaryShort": "Creates a federally-backed N100bn fund to provide low-interest, long-tenor financing to Nigerian-owned technology startups.",
+    "fullText": "An Act to establish a Nigeria Startup Investment Fund (NSIF) to be administered jointly by the Bank of Industry and the National Information Technology Development Agency. The Fund shall provide debt and equity financing to qualifying indigenous technology companies registered under the Companies and Allied Matters Act and the Nigeria Startup Act 2022. Eligibility shall be limited to companies where at least 51 percent of equity is held by Nigerian citizens. The Fund shall maintain a minimum capitalization of N100,000,000,000 (one hundred billion Naira), funded through (a) a 0.25 percent levy on profits of telecommunications operators with annual revenues above N50bn, (b) appropriations by the National Assembly, and (c) returns on the Fund's own investments. The Fund shall publish annual impact reports to be laid before both chambers of the National Assembly...",
+    "stageEvents": [
+      { "stage": "INTRODUCED", "occurredOn": "2026-02-12", "notes": "Read for the first time on the floor of the Senate." },
+      { "stage": "FIRST_READING", "occurredOn": "2026-02-12" },
+      { "stage": "SECOND_READING", "occurredOn": "2026-03-04", "notes": "Debate concluded; referred to Senate Committee on ICT & Cybersecurity." }
+    ],
+    "documents": [
+      { "type": "PDF", "url": "https://senate.gov.ng/bills/SB142.pdf", "description": "Gazette text" },
+      { "type": "PRESS_RELEASE", "url": "https://senate.gov.ng/news/sb142-debate", "description": "Senate press release on second-reading debate" }
+    ]
+  },
+  {
+    "billNumber": "SB.077",
+    "title": "A Bill for an Act to Amend the Electoral Act 2022 to Mandate Real-Time Electronic Transmission of Polling Unit Results, and for Related Matters",
+    "introducedDate": "2026-01-22",
+    "currentStage": "COMMITTEE",
+    "sponsorSlugs": ["abdul-ningi"],
+    "summaryShort": "Makes electronic transmission of polling unit results from BVAS devices to a public INEC portal mandatory and non-discretionary.",
+    "fullText": "An Act to amend the Electoral Act 2022 to require the Independent National Electoral Commission to electronically transmit polling unit results from the Bimodal Voter Accreditation System directly to the INEC Result Viewing Portal in real time. Section 60 of the Principal Act is amended by deleting the words 'may, where practicable' and substituting 'shall, in all circumstances'. Section 64 is amended to provide that any collation of results that conflicts with the electronically transmitted polling unit results shall be void. The Commission shall publish the source code and audit logs of the transmission system to a designated committee of the National Assembly within 30 days of every general election. Refusal or failure to transmit shall constitute an offence punishable by removal from office and a fine of N5,000,000...",
+    "stageEvents": [
+      { "stage": "INTRODUCED", "occurredOn": "2026-01-22" },
+      { "stage": "FIRST_READING", "occurredOn": "2026-01-22" },
+      { "stage": "SECOND_READING", "occurredOn": "2026-02-08", "notes": "Heated debate; passed second reading 67-32." },
+      { "stage": "COMMITTEE", "occurredOn": "2026-02-15", "notes": "Referred to Committee on INEC; public hearing scheduled." }
+    ],
+    "documents": [
+      { "type": "PDF", "url": "https://senate.gov.ng/bills/SB077.pdf", "description": "Bill text" }
+    ]
+  },
+  {
+    "billNumber": "SB.211",
+    "title": "A Bill for an Act to Provide for Universal Health Coverage for Pregnant Women and Children Under Five, and for Related Matters",
+    "introducedDate": "2026-03-18",
+    "currentStage": "FIRST_READING",
+    "sponsorSlugs": ["oluremi-tinubu", "ireti-kingibe"],
+    "summaryShort": "Guarantees free antenatal care, delivery and under-five healthcare across all primary health centres, funded from the Basic Health Care Provision Fund.",
+    "fullText": "An Act to provide that every pregnant woman ordinarily resident in Nigeria, and every child below the age of five, shall be entitled to free essential health services at any accredited primary health centre. The services covered shall include: antenatal consultations, skilled birth attendance, postnatal care for mother and infant for six weeks following delivery, routine childhood immunizations as prescribed by the National Primary Health Care Development Agency, treatment of malaria, pneumonia and diarrhoeal disease in children under five, and emergency obstetric referrals. Funding shall be drawn from the Basic Health Care Provision Fund established under Section 11 of the National Health Act 2014, with the federal contribution increased from one percent to two percent of the Consolidated Revenue Fund...",
+    "stageEvents": [
+      { "stage": "INTRODUCED", "occurredOn": "2026-03-18" },
+      { "stage": "FIRST_READING", "occurredOn": "2026-03-18" }
+    ],
+    "documents": [
+      { "type": "PDF", "url": "https://senate.gov.ng/bills/SB211.pdf", "description": "Bill text" }
+    ]
+  },
+  {
+    "billNumber": "SB.198",
+    "title": "A Bill for an Act to Establish a National Agency for the Protection of Persons Living with Disabilities, and for Related Matters",
+    "introducedDate": "2026-02-28",
+    "currentStage": "PASSED",
+    "sponsorSlugs": ["adamu-aliero"],
+    "summaryShort": "Creates an enforcement agency with prosecutorial powers to ensure compliance with the Discrimination Against Persons with Disabilities (Prohibition) Act 2018.",
+    "fullText": "An Act to establish the National Agency for the Protection of Persons Living with Disabilities as a body corporate empowered to investigate complaints, prosecute offenders, and order remedies for violations of the Discrimination Against Persons with Disabilities (Prohibition) Act 2018. The Agency shall maintain a register of public buildings audited for accessibility compliance and may impose administrative penalties on owners of buildings that remain non-compliant five years after this Act takes effect. The Agency shall be funded through a combination of federal appropriations and a 0.05 percent levy on the gross contract values of federal construction contracts above N500m...",
+    "stageEvents": [
+      { "stage": "INTRODUCED", "occurredOn": "2026-02-28" },
+      { "stage": "FIRST_READING", "occurredOn": "2026-02-28" },
+      { "stage": "SECOND_READING", "occurredOn": "2026-03-11" },
+      { "stage": "COMMITTEE", "occurredOn": "2026-03-19" },
+      { "stage": "THIRD_READING", "occurredOn": "2026-04-22" },
+      { "stage": "PASSED", "occurredOn": "2026-04-22", "notes": "Passed unanimously. Transmitted to House of Representatives for concurrence." }
+    ],
+    "documents": [
+      { "type": "PDF", "url": "https://senate.gov.ng/bills/SB198.pdf", "description": "Final passed text" },
+      { "type": "PRESS_RELEASE", "url": "https://senate.gov.ng/news/sb198-passed", "description": "Press release on passage" }
+    ]
+  },
+  {
+    "billNumber": "SB.164",
+    "title": "A Bill for an Act to Amend the National Security Agencies Act to Expand Lawful Interception Powers, and for Related Matters",
+    "introducedDate": "2026-02-19",
+    "currentStage": "SECOND_READING",
+    "sponsorSlugs": ["tahir-monguno"],
+    "summaryShort": "Expands powers of security agencies to intercept electronic communications under warrant from a designated Federal High Court judge.",
+    "fullText": "An Act to amend the National Security Agencies Act to provide a statutory framework for the lawful interception of electronic communications by the Department of State Services, the National Intelligence Agency, and the Defence Intelligence Agency. Interception shall require a written warrant from a designated judge of the Federal High Court, valid for no more than 90 days and renewable only upon fresh application. Communications providers shall be required to install and maintain technical capabilities to comply with interception warrants. A new Section 23A creates the offence of unauthorised interception with penalties of up to ten years imprisonment. The Bill also creates a joint National Assembly oversight committee to receive quarterly classified briefings on the number and category of warrants issued...",
+    "stageEvents": [
+      { "stage": "INTRODUCED", "occurredOn": "2026-02-19" },
+      { "stage": "FIRST_READING", "occurredOn": "2026-02-19" },
+      { "stage": "SECOND_READING", "occurredOn": "2026-03-07", "notes": "Passed second reading amid civil society objections; referred to Committee on National Security & Intelligence." }
+    ],
+    "documents": [
+      { "type": "PDF", "url": "https://senate.gov.ng/bills/SB164.pdf", "description": "Bill text" }
+    ]
+  },
+  {
+    "billNumber": "SB.089",
+    "title": "A Bill for an Act to Establish a Federal Climate Change Adaptation Fund for States Vulnerable to Desertification and Coastal Erosion, and for Related Matters",
+    "introducedDate": "2026-01-30",
+    "currentStage": "COMMITTEE",
+    "sponsorSlugs": ["godswill-akpabio", "ireti-kingibe"],
+    "summaryShort": "Sets up a dedicated fund channelling 1.5% of federal mineral revenues to climate adaptation projects in front-line states.",
+    "fullText": "An Act to establish a Federal Climate Change Adaptation Fund for the purpose of financing infrastructure and livelihood interventions in states facing accelerated desertification, flooding, or coastal erosion. The Fund shall be financed by an allocation of 1.5 percent of all federally collected revenues from solid minerals, hydrocarbons, and carbon credits. Disbursements shall be made to qualifying states through verified state-level Climate Adaptation Plans approved by the Federal Ministry of Environment. The Bill identifies eleven front-line states for the first appropriation cycle: Lagos, Bayelsa, Rivers, Delta, Akwa Ibom, Cross River, Borno, Yobe, Sokoto, Kebbi and Jigawa...",
+    "stageEvents": [
+      { "stage": "INTRODUCED", "occurredOn": "2026-01-30" },
+      { "stage": "FIRST_READING", "occurredOn": "2026-01-30" },
+      { "stage": "SECOND_READING", "occurredOn": "2026-02-21" },
+      { "stage": "COMMITTEE", "occurredOn": "2026-03-01", "notes": "Joint committee on Environment and Finance; public hearing concluded on 2026-04-15." }
+    ],
+    "documents": [
+      { "type": "PDF", "url": "https://senate.gov.ng/bills/SB089.pdf", "description": "Bill text" },
+      { "type": "HANSARD", "url": "https://senate.gov.ng/hansard/2026-02-21", "description": "Hansard - second reading debate" }
+    ]
+  },
+  {
+    "billNumber": "SB.115",
+    "title": "A Bill for an Act to Repeal the Cybercrime (Prohibition, Prevention etc.) Act 2015 Section 24 and Enact New Provisions for Online Speech, and for Related Matters",
+    "introducedDate": "2026-02-05",
+    "currentStage": "FIRST_READING",
+    "sponsorSlugs": ["ireti-kingibe"],
+    "summaryShort": "Repeals the cyberstalking provision long used against journalists, and replaces it with narrower offences requiring proof of incitement to violence.",
+    "fullText": "An Act to repeal Section 24 of the Cybercrime (Prohibition, Prevention etc.) Act 2015 and to enact new provisions defining the offence of online incitement narrowly so as to be consistent with Section 39 of the Constitution. The new offence requires the prosecution to prove (a) a direct and explicit call to imminent violence against an identifiable person or group, (b) the realistic likelihood that the violence would result, and (c) that the speech was made by the accused. Public interest journalism, satire, commentary, and criticism of government officials shall not constitute offences under this Act. Existing prosecutions under the repealed provision shall lapse upon commencement of this Act...",
+    "stageEvents": [
+      { "stage": "INTRODUCED", "occurredOn": "2026-02-05" },
+      { "stage": "FIRST_READING", "occurredOn": "2026-02-05" }
+    ],
+    "documents": [
+      { "type": "PDF", "url": "https://senate.gov.ng/bills/SB115.pdf", "description": "Bill text" }
+    ]
+  },
+  {
+    "billNumber": "SB.052",
+    "title": "A Bill for an Act to Provide for Mandatory Paternity Leave for Federal Public Servants, and for Related Matters",
+    "introducedDate": "2026-01-15",
+    "currentStage": "SECOND_READING",
+    "sponsorSlugs": ["oluremi-tinubu"],
+    "summaryShort": "Guarantees male federal public servants 14 calendar days of paid leave on the birth or adoption of a child.",
+    "fullText": "An Act to amend the Public Service Rules to provide that every male federal public servant shall be entitled to 14 consecutive calendar days of fully paid paternity leave on the occasion of the birth of his child or the legal adoption of a child under the age of three. The leave shall be taken within 60 days of the birth or adoption. The Bill amends the Labour Act, the Police Service Regulations, and the Armed Forces Service Conditions to extend the same entitlement to officers and other ranks of the federal security services. State governments are encouraged but not compelled to make corresponding provision for their public servants...",
+    "stageEvents": [
+      { "stage": "INTRODUCED", "occurredOn": "2026-01-15" },
+      { "stage": "FIRST_READING", "occurredOn": "2026-01-15" },
+      { "stage": "SECOND_READING", "occurredOn": "2026-02-13" }
+    ],
+    "documents": [
+      { "type": "PDF", "url": "https://senate.gov.ng/bills/SB052.pdf", "description": "Bill text" }
+    ]
+  }
+]

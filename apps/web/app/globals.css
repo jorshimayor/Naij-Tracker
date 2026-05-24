@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* PARCHMENT — aged vellum + ink + imperial gold. Sunlit Roman senate floor. */
+  :root {
+    --background:        38 38% 91%;   /* parchment cream */
+    --foreground:        30 35% 8%;    /* deep ink black-brown */
+    --card:              40 50% 96%;   /* lighter vellum panel */
+    --card-foreground:   30 35% 8%;
+    --muted:             36 30% 86%;   /* worn stone */
+    --muted-foreground:  32 22% 32%;   /* aged bronze ink */
+    --border:            34 28% 75%;   /* faded ruled line */
+    --input:             34 28% 75%;
+    --ring:              0 60% 32%;    /* porphyry red focus halo */
+    --accent:            0 60% 32%;
+    --accent-foreground: 38 38% 96%;
+
+    --flag-green:        152 60% 22%;  /* forest, dignified */
+    --flag-green-dark:   152 60% 15%;
+    --flag-green-light:  152 50% 32%;
+    --gold:              40 62% 44%;   /* imperial gold leaf */
+    --gold-dim:          38 40% 56%;
+    --porphyry:          0 60% 32%;    /* Tyrian / porphyry red */
+  }
+
+  /* CANDLELIT HALL — obsidian stone, warm cream parchment, ember accents. */
+  .dark {
+    --background:        30 18% 5%;    /* obsidian, slightly warm */
+    --foreground:        38 50% 86%;   /* warm cream parchment */
+    --card:              30 16% 9%;    /* darker stone panel */
+    --card-foreground:   38 50% 86%;
+    --muted:             30 14% 12%;
+    --muted-foreground:  38 28% 65%;   /* aged candlelit bronze */
+    --border:            30 14% 18%;
+    --input:             30 14% 18%;
+    --ring:              10 70% 50%;   /* ember halo */
+    --accent:            10 70% 50%;
+    --accent-foreground: 30 18% 5%;
+
+    --flag-green:        152 40% 45%;  /* lit moss */
+    --flag-green-dark:   152 40% 35%;
+    --flag-green-light:  152 45% 60%;
+    --gold:              40 65% 60%;   /* lit gold */
+    --gold-dim:          38 40% 48%;
+    --porphyry:          10 70% 50%;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    color-scheme: light dark;
+    font-family: var(--font-serif), ui-serif, Georgia, Cambria, 'Times New Roman', serif;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    transition: background-color 0.18s ease, color 0.18s ease;
+    font-feature-settings: 'kern', 'liga', 'onum';
+  }
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight;
+  }
+  /* Forms + buttons keep system sans for readability — they shouldn't feel chiselled */
+  input, select, textarea, button {
+    font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  }
+  a {
+    @apply underline-offset-2;
+  }
+}
+
+@layer components {
+  /* ── BILL READER ─────────────────────────────────────────────────── */
+  .bill-prose {
+    --reader-size: 19px;
+    --reader-leading: 1.78;
+    font-family: var(--font-serif), Georgia, 'Times New Roman', serif;
+    font-size: var(--reader-size);
+    line-height: var(--reader-leading);
+    color: hsl(var(--foreground));
+    text-wrap: pretty;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+  }
+  .bill-prose p {
+    margin: 0 0 1em 0;
+    text-align: justify;
+  }
+  /* Roman manuscript touch: indent every paragraph after the first in a section,
+     and give the very first paragraph in the document a drop cap. */
+  .bill-prose .reader-section + .reader-section p:not(:first-child),
+  .bill-prose .reader-section p + p {
+    text-indent: 1.6em;
+  }
+  .bill-prose .reader-first p:first-child::first-letter {
+    font-family: var(--font-display), Georgia, serif;
+    float: left;
+    font-size: 3.6em;
+    line-height: 0.85;
+    margin: 0.04em 0.12em 0 -0.04em;
+    color: hsl(var(--gold));
+    font-weight: 600;
+  }
+  .bill-prose h2.reader-heading {
+    font-family: var(--font-display), Georgia, serif;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: hsl(var(--foreground));
+    margin: 2.4em 0 0.8em 0;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid hsl(var(--border));
+  }
+  .bill-prose h2.reader-heading::before {
+    content: '✦  ';
+    color: hsl(var(--gold));
+  }
+  /* Print: clean, no chrome. */
+  @media print {
+    body { background: white !important; color: black !important; }
+    .reader-chrome, header, footer, .reader-sidebar { display: none !important; }
+    .bill-prose { font-size: 12pt; line-height: 1.5; max-width: none; }
+    .bill-prose .reader-first p:first-child::first-letter { color: black; }
+    a { color: inherit; text-decoration: none; }
+  }
+
+
+  .container-prose {
+    @apply mx-auto max-w-3xl px-4 sm:px-6;
+  }
+  .container-wide {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  .link-quiet {
+    @apply text-foreground/80 transition-colors hover:text-gold hover:underline;
+  }
+  /* Small-caps Roman label — used for eyebrows, section kickers, badges. */
+  .roman-eyebrow {
+    @apply font-display text-xs font-medium uppercase tracking-roman text-gold;
+  }
+  /* Imperial chip — for stage labels and pill nav. */
+  .chip {
+    @apply inline-flex items-center rounded-full border border-border bg-card px-3 py-1 text-xs no-underline transition-colors hover:border-gold hover:text-gold;
+  }
+  .chip-active {
+    @apply border-gold bg-gold/10 text-gold;
+  }
+  /* Classical divider — gold rule + centered hedera. Use after a section header. */
+  .divider-roman {
+    @apply relative my-2 h-px w-full bg-border;
+  }
+  .divider-roman::before {
+    content: '✦';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: hsl(var(--background));
+    color: hsl(var(--gold));
+    padding: 0 0.6rem;
+    font-size: 0.8rem;
+  }
+}

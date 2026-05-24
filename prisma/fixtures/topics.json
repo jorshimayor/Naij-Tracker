@@ -1,0 +1,22 @@
+[
+  { "slug": "education", "name": "Education" },
+  { "slug": "health", "name": "Health" },
+  { "slug": "security", "name": "Security & Defence" },
+  { "slug": "energy", "name": "Energy & Power" },
+  { "slug": "tax-revenue", "name": "Tax & Revenue" },
+  { "slug": "gender", "name": "Gender & Family" },
+  { "slug": "anti-corruption", "name": "Anti-Corruption" },
+  { "slug": "technology", "name": "Technology & Digital" },
+  { "slug": "agriculture", "name": "Agriculture & Food" },
+  { "slug": "transport", "name": "Transport & Infrastructure" },
+  { "slug": "judiciary", "name": "Judiciary & Legal Reform" },
+  { "slug": "labour", "name": "Labour & Employment" },
+  { "slug": "elections", "name": "Elections & Democracy" },
+  { "slug": "environment", "name": "Environment & Climate" },
+  { "slug": "youth", "name": "Youth & Sports" },
+  { "slug": "trade", "name": "Trade & Industry" },
+  { "slug": "housing", "name": "Housing & Urban" },
+  { "slug": "human-rights", "name": "Human Rights" },
+  { "slug": "media", "name": "Media & Press Freedom" },
+  { "slug": "finance", "name": "Finance & Banking" }
+]

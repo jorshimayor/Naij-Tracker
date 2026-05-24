@@ -1,0 +1,403 @@
+// Naija Bill Tracker - canonical schema (PRD §8.5).
+// v0 omits pgvector + tsvector generated column; FTS is done via raw to_tsvector() queries.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum JurisdictionType {
+  FEDERAL_SENATE
+  FEDERAL_REPS
+  EXECUTIVE
+  STATE_ASSEMBLY
+  FCT_ASSEMBLY
+}
+
+enum BillStage {
+  INTRODUCED
+  FIRST_READING
+  SECOND_READING
+  COMMITTEE
+  THIRD_READING
+  PASSED
+  TRANSMITTED
+  ASSENTED
+  WITHDRAWN
+  LAPSED
+}
+
+enum SourceDocumentType {
+  PDF
+  HTML
+  HANSARD
+  PRESS_RELEASE
+}
+
+enum SponsorRole {
+  PRIMARY
+  CO_SPONSOR
+}
+
+enum TopicSource {
+  AI
+  EDITOR
+}
+
+enum ExplainerStatus {
+  DRAFT
+  AUTO_APPROVED
+  PENDING_REVIEW
+  APPROVED
+  FLAGGED
+}
+
+enum SubscriptionChannel {
+  EMAIL
+  WHATSAPP
+  BOTH
+}
+
+enum SubscriptionFrequency {
+  REALTIME
+  DAILY
+  WEEKLY
+}
+
+enum SubscriptionTarget {
+  BILL
+  SPONSOR
+  TOPIC
+  SEARCH
+  CHAMBER
+}
+
+enum CommentStatus {
+  VISIBLE
+  HIDDEN
+  PENDING_MODERATION
+}
+
+enum UserRole {
+  CITIZEN
+  CONTRIBUTOR
+  EDITOR
+  ADMIN
+}
+
+enum ContributionStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  PUBLISHED
+}
+
+model Jurisdiction {
+  id        String           @id @default(cuid())
+  name      String
+  slug      String           @unique
+  type      JurisdictionType
+  stateCode String?          @map("state_code")
+  websiteUrl String?         @map("website_url")
+  createdAt DateTime         @default(now()) @map("created_at")
+  updatedAt DateTime         @updatedAt @map("updated_at")
+
+  bills Bill[]
+  contributions ContributedBill[]
+
+  @@map("jurisdictions")
+}
+
+model Bill {
+  id              String     @id @default(cuid())
+  jurisdictionId  String     @map("jurisdiction_id")
+  billNumber      String     @map("bill_number")
+  title           String
+  slug            String
+  currentStage    BillStage  @map("current_stage")
+  introducedDate  DateTime?  @map("introduced_date")
+  lastActionDate  DateTime?  @map("last_action_date")
+  summaryShort    String?    @map("summary_short")
+  summaryLong     String?    @map("summary_long")
+  fullText        String?    @map("full_text")
+  language        String     @default("en")
+  sensitiveFlag   Boolean    @default(false) @map("sensitive_flag")
+  contentHash     String?    @map("content_hash")
+  embedding       Json?      // pgvector in prod; JSON array in v0
+  createdAt       DateTime   @default(now()) @map("created_at")
+  updatedAt       DateTime   @updatedAt @map("updated_at")
+
+  jurisdiction Jurisdiction       @relation(fields: [jurisdictionId], references: [id])
+  stageEvents  BillStageEvent[]
+  sponsors     BillSponsor[]
+  topics       BillTopic[]
+  documents    SourceDocument[]
+  explainers   AIExplainer[]
+  comments     Comment[]
+  publishedFromContribution ContributedBill[] @relation("PublishedFromContribution")
+
+  @@unique([jurisdictionId, billNumber])
+  @@unique([jurisdictionId, slug])
+  @@index([currentStage])
+  @@index([introducedDate])
+  @@index([lastActionDate])
+  @@map("bills")
+}
+
+model BillStageEvent {
+  id               String     @id @default(cuid())
+  billId           String     @map("bill_id")
+  stage            BillStage
+  occurredOn       DateTime   @map("occurred_on")
+  sourceDocumentId String?    @map("source_document_id")
+  notes            String?
+  createdAt        DateTime   @default(now()) @map("created_at")
+
+  bill           Bill            @relation(fields: [billId], references: [id], onDelete: Cascade)
+  sourceDocument SourceDocument? @relation(fields: [sourceDocumentId], references: [id])
+
+  @@index([billId, occurredOn])
+  @@map("bill_stage_events")
+}
+
+model Legislator {
+  id            String   @id @default(cuid())
+  fullName      String   @map("full_name")
+  slug          String   @unique
+  photoUrl      String?  @map("photo_url")
+  party         String?
+  chamber       String   // matches Jurisdiction.slug but kept flexible for cross-chamber history
+  constituency  String?
+  state         String?
+  contactEmail  String?  @map("contact_email")
+  phone         String?
+  socialLinks   Json?    @map("social_links")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  sponsorships BillSponsor[]
+
+  @@map("legislators")
+}
+
+model BillSponsor {
+  billId       String      @map("bill_id")
+  legislatorId String      @map("legislator_id")
+  role         SponsorRole @default(PRIMARY)
+  createdAt    DateTime    @default(now()) @map("created_at")
+
+  bill       Bill       @relation(fields: [billId], references: [id], onDelete: Cascade)
+  legislator Legislator @relation(fields: [legislatorId], references: [id])
+
+  @@id([billId, legislatorId])
+  @@map("bill_sponsors")
+}
+
+model Topic {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  parentId  String?  @map("parent_id")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  parent   Topic?      @relation("TopicHierarchy", fields: [parentId], references: [id])
+  children Topic[]     @relation("TopicHierarchy")
+  bills    BillTopic[]
+
+  @@map("topics")
+}
+
+model BillTopic {
+  billId   String      @map("bill_id")
+  topicId  String      @map("topic_id")
+  source   TopicSource @default(AI)
+  confidence Float?
+  createdAt DateTime   @default(now()) @map("created_at")
+
+  bill  Bill  @relation(fields: [billId], references: [id], onDelete: Cascade)
+  topic Topic @relation(fields: [topicId], references: [id])
+
+  @@id([billId, topicId])
+  @@map("bill_topics")
+}
+
+model SourceDocument {
+  id           String              @id @default(cuid())
+  billId       String              @map("bill_id")
+  type         SourceDocumentType
+  url          String?
+  storageKey   String?             @map("storage_key")
+  contentHash  String?             @map("content_hash")
+  retrievedAt  DateTime            @default(now()) @map("retrieved_at")
+  description  String?
+
+  bill        Bill              @relation(fields: [billId], references: [id], onDelete: Cascade)
+  stageEvents BillStageEvent[]
+
+  @@index([billId])
+  @@map("source_documents")
+}
+
+model AIExplainer {
+  id              String          @id @default(cuid())
+  billId          String          @map("bill_id")
+  version         Int             @default(1)
+  tldr            String
+  plainEnglish    String          @map("plain_english")
+  howItAffectsYou Json            @map("how_it_affects_you")
+  argumentsFor    Json            @map("arguments_for")
+  argumentsAgainst Json           @map("arguments_against")
+  jargonTerms     Json            @map("jargon_terms")
+  sourceCitations Json            @map("source_citations")
+  status          ExplainerStatus @default(DRAFT)
+  modelUsed       String          @map("model_used")
+  generatedAt     DateTime        @default(now()) @map("generated_at")
+  reviewerId      String?         @map("reviewer_id")
+  reviewedAt      DateTime?       @map("reviewed_at")
+  reviewerNote    String?         @map("reviewer_note")
+  verification    Json?           // most recent LLM verification result
+  verifiedAt      DateTime?       @map("verified_at")
+  language        String          @default("en")
+
+  bill     Bill  @relation(fields: [billId], references: [id], onDelete: Cascade)
+  reviewer User? @relation("ExplainerReviewer", fields: [reviewerId], references: [id])
+
+  @@unique([billId, version, language])
+  @@index([billId, status])
+  @@map("ai_explainers")
+}
+
+model User {
+  id             String   @id @default(cuid())
+  email          String   @unique
+  phone          String?  @unique
+  whatsappOptIn  Boolean  @default(false) @map("whatsapp_opt_in")
+  displayName    String?  @map("display_name")
+  role           UserRole @default(CITIZEN)
+  emailVerified  Boolean  @default(false) @map("email_verified")
+  lastLoginAt    DateTime? @map("last_login_at")
+  lastDailyDigestAt  DateTime? @map("last_daily_digest_at")
+  lastWeeklyDigestAt DateTime? @map("last_weekly_digest_at")
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  subscriptions     Subscription[]
+  comments          Comment[]
+  reviewedExplainers AIExplainer[] @relation("ExplainerReviewer")
+  auditLogs         AuditLog[]
+  submissions       ContributedBill[] @relation("ContributionSubmitter")
+  contributionReviews ContributedBill[] @relation("ContributionReviewer")
+
+  @@map("users")
+}
+
+model Subscription {
+  id         String                @id @default(cuid())
+  userId     String                @map("user_id")
+  targetType SubscriptionTarget    @map("target_type")
+  targetId   String                @map("target_id")
+  channel    SubscriptionChannel
+  frequency  SubscriptionFrequency
+  createdAt  DateTime              @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, targetType, targetId, channel])
+  @@index([targetType, targetId])
+  @@map("subscriptions")
+}
+
+model Comment {
+  id        String        @id @default(cuid())
+  billId    String        @map("bill_id")
+  userId    String        @map("user_id")
+  body      String
+  status    CommentStatus @default(PENDING_MODERATION)
+  parentId  String?       @map("parent_id")
+  createdAt DateTime      @default(now()) @map("created_at")
+  updatedAt DateTime      @updatedAt @map("updated_at")
+
+  bill    Bill      @relation(fields: [billId], references: [id], onDelete: Cascade)
+  user    User      @relation(fields: [userId], references: [id])
+  parent  Comment?  @relation("CommentReplies", fields: [parentId], references: [id])
+  replies Comment[] @relation("CommentReplies")
+
+  @@index([billId, status])
+  @@map("comments")
+}
+
+model ContributedBill {
+  id              String             @id @default(cuid())
+  submitterId     String             @map("submitter_id")
+  jurisdictionId  String             @map("jurisdiction_id")
+  billNumber      String             @map("bill_number")
+  title           String
+  summary         String?
+  sourceUrl       String?            @map("source_url")
+  fullText        String?            @map("full_text")
+  submitterNote   String?            @map("submitter_note")
+  status          ContributionStatus @default(PENDING)
+  reviewerId      String?            @map("reviewer_id")
+  reviewerNote    String?            @map("reviewer_note")
+  publishedBillId String?            @map("published_bill_id")
+  reviewedAt      DateTime?          @map("reviewed_at")
+  createdAt       DateTime           @default(now()) @map("created_at")
+  updatedAt       DateTime           @updatedAt @map("updated_at")
+
+  submitter      User         @relation("ContributionSubmitter", fields: [submitterId], references: [id])
+  reviewer       User?        @relation("ContributionReviewer", fields: [reviewerId], references: [id])
+  jurisdiction   Jurisdiction @relation(fields: [jurisdictionId], references: [id])
+  publishedBill  Bill?        @relation("PublishedFromContribution", fields: [publishedBillId], references: [id])
+
+  @@index([submitterId, status])
+  @@index([status, createdAt])
+  @@map("contributed_bills")
+}
+
+model OtpCode {
+  id        String   @id @default(cuid())
+  email     String
+  codeHash  String   @map("code_hash") // sha256 of the 6-digit code
+  expiresAt DateTime @map("expires_at")
+  consumedAt DateTime? @map("consumed_at")
+  attempts  Int      @default(0)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([email, expiresAt])
+  @@map("otp_codes")
+}
+
+model MockEmail {
+  id        String   @id @default(cuid())
+  to        String
+  subject   String
+  body      String
+  category  String   // "otp", "subscription_confirmation", "stage_change", etc.
+  metadata  Json?
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([to, createdAt])
+  @@index([category, createdAt])
+  @@map("mock_emails")
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  actorId    String?  @map("actor_id")
+  action     String
+  entityType String   @map("entity_type")
+  entityId   String   @map("entity_id")
+  before     Json?
+  after      Json?
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  actor User? @relation(fields: [actorId], references: [id])
+
+  @@index([entityType, entityId])
+  @@index([actorId, createdAt])
+  @@map("audit_logs")
+}

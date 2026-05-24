@@ -1,0 +1,62 @@
+[
+  {
+    "slug": "federal-senate",
+    "name": "Senate",
+    "type": "FEDERAL_SENATE",
+    "websiteUrl": "https://senate.gov.ng"
+  },
+  {
+    "slug": "federal-reps",
+    "name": "House of Representatives",
+    "type": "FEDERAL_REPS",
+    "websiteUrl": "https://nass.gov.ng/house"
+  },
+  {
+    "slug": "executive",
+    "name": "Executive (Presidency)",
+    "type": "EXECUTIVE",
+    "websiteUrl": "https://statehouse.gov.ng"
+  },
+  {
+    "slug": "lagos-state-hoa",
+    "name": "Lagos State House of Assembly",
+    "type": "STATE_ASSEMBLY",
+    "stateCode": "LA",
+    "websiteUrl": "https://lagoshouseofassembly.gov.ng"
+  },
+  {
+    "slug": "rivers-state-hoa",
+    "name": "Rivers State House of Assembly",
+    "type": "STATE_ASSEMBLY",
+    "stateCode": "RI",
+    "websiteUrl": "https://rsha.gov.ng"
+  },
+  {
+    "slug": "kaduna-state-hoa",
+    "name": "Kaduna State House of Assembly",
+    "type": "STATE_ASSEMBLY",
+    "stateCode": "KD",
+    "websiteUrl": "https://kdsha.gov.ng"
+  },
+  {
+    "slug": "kano-state-hoa",
+    "name": "Kano State House of Assembly",
+    "type": "STATE_ASSEMBLY",
+    "stateCode": "KN",
+    "websiteUrl": "https://kanoassembly.gov.ng"
+  },
+  {
+    "slug": "ogun-state-hoa",
+    "name": "Ogun State House of Assembly",
+    "type": "STATE_ASSEMBLY",
+    "stateCode": "OG",
+    "websiteUrl": "https://ogunhouseofassembly.gov.ng"
+  },
+  {
+    "slug": "edo-state-hoa",
+    "name": "Edo State House of Assembly",
+    "type": "STATE_ASSEMBLY",
+    "stateCode": "ED",
+    "websiteUrl": "https://edohouseofassembly.gov.ng"
+  }
+]

@@ -1,0 +1,95 @@
+{
+  "_meta": {
+    "note": "v0 starter dataset — covers a sample of LGAs in states where we have legislators seeded. Phase 2 will expand to all 774 LGAs sourced from INEC constituency data. Mappings are illustrative and use the legislators currently in the database; do not treat as authoritative constituency assignments.",
+    "lastUpdated": "2026-05-23"
+  },
+  "states": [
+    {
+      "code": "LA",
+      "name": "Lagos",
+      "lgas": [
+        { "name": "Apapa",         "senatorSlug": "oluremi-tinubu", "repsSlug": null, "stateAssemblySlug": "mojisola-meranda" },
+        { "name": "Eti-Osa",       "senatorSlug": "oluremi-tinubu", "repsSlug": null, "stateAssemblySlug": "noheem-adams" },
+        { "name": "Lagos Mainland","senatorSlug": "oluremi-tinubu", "repsSlug": null, "stateAssemblySlug": "tolani-saliu" },
+        { "name": "Ikeja",         "senatorSlug": "oluremi-tinubu", "repsSlug": null, "stateAssemblySlug": "tolani-saliu" },
+        { "name": "Surulere",      "senatorSlug": "oluremi-tinubu", "repsSlug": null, "stateAssemblySlug": "noheem-adams" }
+      ]
+    },
+    {
+      "code": "AB",
+      "name": "Abia",
+      "lgas": [
+        { "name": "Bende",                  "senatorSlug": null, "repsSlug": "benjamin-kalu",    "stateAssemblySlug": null },
+        { "name": "Isuikwuato",             "senatorSlug": null, "repsSlug": "amobi-ogah",       "stateAssemblySlug": null },
+        { "name": "Umunneochi",             "senatorSlug": null, "repsSlug": "amobi-ogah",       "stateAssemblySlug": null },
+        { "name": "Isiala-Ngwa North",      "senatorSlug": null, "repsSlug": "ginger-onwusibe",  "stateAssemblySlug": null },
+        { "name": "Isiala-Ngwa South",      "senatorSlug": null, "repsSlug": "ginger-onwusibe",  "stateAssemblySlug": null }
+      ]
+    },
+    {
+      "code": "KD",
+      "name": "Kaduna",
+      "lgas": [
+        { "name": "Zaria",       "senatorSlug": null, "repsSlug": "tajudeen-abbas", "stateAssemblySlug": null },
+        { "name": "Sabon Gari",  "senatorSlug": null, "repsSlug": "tajudeen-abbas", "stateAssemblySlug": null }
+      ]
+    },
+    {
+      "code": "RI",
+      "name": "Rivers",
+      "lgas": [
+        { "name": "Obio/Akpor",  "senatorSlug": null, "repsSlug": "kingsley-chinda", "stateAssemblySlug": null }
+      ]
+    },
+    {
+      "code": "FC",
+      "name": "FCT",
+      "lgas": [
+        { "name": "Abuja Municipal", "senatorSlug": "ireti-kingibe", "repsSlug": null, "stateAssemblySlug": null },
+        { "name": "Bwari",           "senatorSlug": "ireti-kingibe", "repsSlug": null, "stateAssemblySlug": null },
+        { "name": "Gwagwalada",      "senatorSlug": "ireti-kingibe", "repsSlug": null, "stateAssemblySlug": null },
+        { "name": "Kuje",            "senatorSlug": "ireti-kingibe", "repsSlug": null, "stateAssemblySlug": null }
+      ]
+    },
+    {
+      "code": "AK",
+      "name": "Akwa Ibom",
+      "lgas": [
+        { "name": "Ikot Ekpene",       "senatorSlug": "godswill-akpabio", "repsSlug": null, "stateAssemblySlug": null },
+        { "name": "Essien Udim",       "senatorSlug": "godswill-akpabio", "repsSlug": null, "stateAssemblySlug": null }
+      ]
+    },
+    {
+      "code": "EK",
+      "name": "Ekiti",
+      "lgas": [
+        { "name": "Ado-Ekiti",     "senatorSlug": "opeyemi-bamidele", "repsSlug": null, "stateAssemblySlug": null },
+        { "name": "Irepodun/Ifelodun", "senatorSlug": "opeyemi-bamidele", "repsSlug": null, "stateAssemblySlug": null }
+      ]
+    },
+    {
+      "code": "BA",
+      "name": "Bauchi",
+      "lgas": [
+        { "name": "Bauchi",   "senatorSlug": "abdul-ningi", "repsSlug": null, "stateAssemblySlug": null },
+        { "name": "Ningi",    "senatorSlug": "abdul-ningi", "repsSlug": null, "stateAssemblySlug": null }
+      ]
+    },
+    {
+      "code": "BO",
+      "name": "Borno",
+      "lgas": [
+        { "name": "Maiduguri", "senatorSlug": "tahir-monguno", "repsSlug": null, "stateAssemblySlug": null },
+        { "name": "Konduga",   "senatorSlug": "tahir-monguno", "repsSlug": null, "stateAssemblySlug": null }
+      ]
+    },
+    {
+      "code": "KB",
+      "name": "Kebbi",
+      "lgas": [
+        { "name": "Birnin Kebbi", "senatorSlug": "adamu-aliero", "repsSlug": null, "stateAssemblySlug": null },
+        { "name": "Aliero",       "senatorSlug": "adamu-aliero", "repsSlug": null, "stateAssemblySlug": null }
+      ]
+    }
+  ]
+}

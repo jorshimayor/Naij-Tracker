@@ -1,0 +1,40 @@
+{
+  "name": "naija-bill-tracker",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Civic infrastructure for tracking bills across Nigerian legislatures.",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm-run-all -p dev:api dev:web",
+    "dev:api": "npm run dev -w @nbt/api",
+    "dev:web": "npm run dev -w @nbt/web",
+    "build": "npm run build -w @nbt/api && npm run build -w @nbt/web",
+    "typecheck": "npm run typecheck -w @nbt/api && npm run typecheck -w @nbt/web",
+    "db:generate": "prisma generate --schema=prisma/schema.prisma",
+    "db:migrate": "prisma migrate dev --schema=prisma/schema.prisma",
+    "db:reset": "prisma migrate reset --schema=prisma/schema.prisma --force",
+    "db:studio": "prisma studio --schema=prisma/schema.prisma",
+    "db:seed": "tsx prisma/seed.ts",
+    "ingest:senate": "tsx apps/api/src/cli/ingest.ts senate",
+    "ingest:reps": "tsx apps/api/src/cli/ingest.ts reps",
+    "ingest:lagos": "tsx apps/api/src/cli/ingest.ts lagos",
+    "ingest:all": "tsx apps/api/src/cli/ingest.ts all",
+    "ai:reset": "tsx apps/api/src/cli/reset-explainers.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "npm-run-all": "^4.1.5",
+    "prisma": "^5.10.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.10.0"
+  },
+  "engines": {
+    "node": ">=20.10.0"
+  }
+}

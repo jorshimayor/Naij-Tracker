@@ -1,0 +1,31 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: nbt-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: nbt
+      POSTGRES_PASSWORD: nbt_dev_password
+      POSTGRES_DB: naija_bill_tracker
+    ports:
+      - "5432:5432"
+    volumes:
+      - nbt_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nbt -d naija_bill_tracker"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    container_name: nbt-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - nbt_redis_data:/data
+
+volumes:
+  nbt_postgres_data:
+  nbt_redis_data:

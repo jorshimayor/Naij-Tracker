@@ -1,0 +1,322 @@
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
+import { api } from '@/lib/api';
+import { Badge } from '@/components/ui/badge';
+import { StagePill } from '@/components/ui/stage-pill';
+import { StickyTabs } from '@/components/bill-detail/sticky-tabs';
+import { ExplainerPanel } from '@/components/bill-detail/explainer-panel';
+import { Timeline } from '@/components/bill-detail/timeline';
+import { Engagement } from '@/components/bill-detail/engagement';
+import { FollowButton } from '@/components/bill-detail/follow-button';
+import { Comments } from '@/components/bill-detail/comments';
+import { formatDate, stageLabel, stageProgress, timeAgo } from '@/lib/utils';
+import { getLocale } from '@/i18n/server';
+
+export const dynamic = 'force-dynamic';
+
+export default async function BillDetailPage({
+  params,
+}: {
+  params: { jurisdiction: string; slug: string };
+}) {
+  const locale = getLocale();
+  let data: Awaited<ReturnType<typeof api.getBill>>;
+  try {
+    data = await api.getBill(params.jurisdiction, params.slug, locale);
+  } catch {
+    notFound();
+  }
+  const { bill, related, duplicates } = data;
+  const progress = stageProgress(bill.currentStage);
+
+  return (
+    <article className="container-wide py-8">
+      {/* Breadcrumbs */}
+      <nav className="mb-3 text-xs text-muted-foreground">
+        <Link href="/bills" className="hover:underline">Bills</Link>
+        <span className="px-1">›</span>
+        <Link href={`/bills?jurisdiction=${bill.jurisdiction.slug}`} className="hover:underline">
+          {bill.jurisdiction.name}
+        </Link>
+        <span className="px-1">›</span>
+        <span className="text-foreground/85">{bill.billNumber}</span>
+      </nav>
+
+      {/* Header */}
+      <header>
+        <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+          <span className="font-mono font-medium text-foreground/85">{bill.billNumber}</span>
+          <span>·</span>
+          <span>{bill.jurisdiction.name}</span>
+          <span>·</span>
+          <span>introduced {formatDate(bill.introducedDate)}</span>
+          {bill.lastActionDate && (
+            <>
+              <span>·</span>
+              <span>last action {timeAgo(bill.lastActionDate)}</span>
+            </>
+          )}
+        </div>
+        <h1 className="mt-2 max-w-4xl font-serif text-3xl font-semibold leading-snug tracking-tight text-foreground">
+          {bill.title}
+        </h1>
+
+        <div className="mt-4 flex flex-wrap items-center gap-2">
+          <StagePill stage={bill.currentStage} />
+          {bill.sensitiveFlag && <Badge variant="amber">Sensitive · explainer under review</Badge>}
+          {bill.topics.map((t) => (
+            <Link key={t.slug} href={`/topics/${t.slug}`} className="no-underline">
+              <Badge variant="outline">{t.name}</Badge>
+            </Link>
+          ))}
+        </div>
+
+        <div className="mt-4">
+          <FollowButton
+            targetType="BILL"
+            targetId={bill.id}
+            revalidate={`/bills/${bill.jurisdiction.slug}/${bill.slug}`}
+          />
+        </div>
+
+        {/* Stage progress bar */}
+        <div className="mt-4 max-w-xl">
+          <div className="flex items-center justify-between text-xs text-muted-foreground">
+            <span>Progress through legislature</span>
+            <span className="font-mono">{progress}%</span>
+          </div>
+          <div className="mt-1 h-2 rounded-full bg-muted">
+            <div className="h-2 rounded-full bg-flag-green transition-all" style={{ width: `${progress}%` }} />
+          </div>
+        </div>
+      </header>
+
+      <StickyTabs />
+
+      <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_280px]">
+        {/* Main column */}
+        <div className="space-y-12">
+          {/* Overview */}
+          <section id="overview" className="scroll-mt-20">
+            <h2 className="font-serif text-2xl font-semibold tracking-tight">Overview</h2>
+            {bill.summaryShort && (
+              <p className="mt-2 max-w-prose text-lg leading-relaxed text-foreground">
+                {bill.summaryShort}
+              </p>
+            )}
+            <dl className="mt-5 grid grid-cols-2 gap-3 text-sm sm:grid-cols-4">
+              <Fact label="Chamber" value={bill.jurisdiction.name} />
+              <Fact label="Current stage" value={stageLabel(bill.currentStage)} />
+              <Fact label="Introduced" value={formatDate(bill.introducedDate)} />
+              <Fact label="Last action" value={formatDate(bill.lastActionDate)} />
+            </dl>
+          </section>
+
+          {/* Plain English */}
+          <section id="explainer" className="scroll-mt-20">
+            <h2 className="font-serif text-2xl font-semibold tracking-tight">Plain English</h2>
+            <p className="mt-1 text-sm text-muted-foreground">
+              A non-partisan summary generated by AI and reviewed by editors for sensitive bills.
+            </p>
+            <div className="mt-4">
+              <ExplainerPanel explainer={bill.explainer} sensitive={bill.sensitiveFlag} />
+            </div>
+          </section>
+
+          {/* Timeline */}
+          <section id="timeline" className="scroll-mt-20">
+            <h2 className="font-serif text-2xl font-semibold tracking-tight">Timeline</h2>
+            <div className="mt-4">
+              <Timeline events={bill.stageEvents} currentStage={bill.currentStage} />
+            </div>
+          </section>
+
+          {/* Sponsors */}
+          <section id="sponsors" className="scroll-mt-20">
+            <h2 className="font-serif text-2xl font-semibold tracking-tight">Sponsors</h2>
+            {bill.sponsors.length === 0 ? (
+              <p className="mt-2 text-sm text-muted-foreground">No sponsors recorded.</p>
+            ) : (
+              <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+                {bill.sponsors.map((s) => (
+                  <li key={s.legislator.slug} className="rounded-lg border border-border bg-card p-4">
+                    <div className="flex items-center justify-between">
+                      <Link
+                        href={`/legislators/${s.legislator.slug}`}
+                        className="font-medium text-foreground no-underline hover:text-flag-green-dark"
+                      >
+                        {s.legislator.fullName}
+                      </Link>
+                      <Badge variant={s.role === 'PRIMARY' ? 'green' : 'slate'}>
+                        {s.role === 'PRIMARY' ? 'Primary' : 'Co-sponsor'}
+                      </Badge>
+                    </div>
+                    <div className="mt-1 text-xs text-muted-foreground">
+                      {s.legislator.party ?? '—'}
+                      {s.legislator.constituency ? ` · ${s.legislator.constituency}` : ''}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+
+          {/* Documents */}
+          <section id="documents" className="scroll-mt-20">
+            <h2 className="font-serif text-2xl font-semibold tracking-tight">Documents</h2>
+            {bill.documents.length === 0 ? (
+              <p className="mt-2 text-sm text-muted-foreground">No source documents recorded.</p>
+            ) : (
+              <ul className="mt-4 space-y-2 text-sm">
+                {bill.documents.map((d, i) => (
+                  <li key={i} className="rounded-md border border-border bg-card p-3">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <Badge variant="outline">{d.type}</Badge>
+                      <a href={d.url} target="_blank" rel="noopener" className="text-flag-green-dark hover:underline">
+                        {d.description ?? d.url}
+                      </a>
+                      <span className="ml-auto text-xs text-muted-foreground">retrieved {formatDate(d.retrievedAt)}</span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {bill.fullText && (
+              <ReadFullBillCta jurisdiction={bill.jurisdiction.slug} slug={bill.slug} wordCount={countWords(bill.fullText)} />
+            )}
+          </section>
+
+          {/* Discussion / Comments */}
+          <section id="discussion" className="scroll-mt-20">
+            <h2 className="font-serif text-2xl font-semibold tracking-tight">Discussion</h2>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Citizens, journalists, and researchers can share views on this bill. Keep it civil.
+            </p>
+            <div className="mt-4">
+              <Comments billId={bill.id} jurisdictionSlug={bill.jurisdiction.slug} billSlug={bill.slug} />
+            </div>
+          </section>
+
+          {/* Share + contact */}
+          <section id="engage" className="scroll-mt-20 border-t border-border pt-10">
+            <h2 className="font-serif text-2xl font-semibold tracking-tight">Take action</h2>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Share this bill, or write to a sponsor.
+            </p>
+            <div className="mt-4">
+              <Engagement bill={bill} />
+            </div>
+          </section>
+        </div>
+
+        {/* Sidebar */}
+        <aside className="space-y-6">
+          <div className="rounded-lg border border-border bg-card p-4">
+            <div className="text-xs uppercase tracking-wider text-muted-foreground">Quick facts</div>
+            <dl className="mt-3 space-y-2 text-sm">
+              <div className="flex justify-between gap-2">
+                <dt className="text-muted-foreground">Bill number</dt>
+                <dd className="font-mono font-medium">{bill.billNumber}</dd>
+              </div>
+              <div className="flex justify-between gap-2">
+                <dt className="text-muted-foreground">Chamber</dt>
+                <dd className="text-right">{bill.jurisdiction.name}</dd>
+              </div>
+              <div className="flex justify-between gap-2">
+                <dt className="text-muted-foreground">Stage</dt>
+                <dd>{stageLabel(bill.currentStage)}</dd>
+              </div>
+              <div className="flex justify-between gap-2">
+                <dt className="text-muted-foreground">Sponsors</dt>
+                <dd>{bill.sponsors.length}</dd>
+              </div>
+              <div className="flex justify-between gap-2">
+                <dt className="text-muted-foreground">Documents</dt>
+                <dd>{bill.documents.length}</dd>
+              </div>
+            </dl>
+          </div>
+
+          {duplicates.length > 0 && (
+            <div className="rounded-lg border border-border bg-card p-4">
+              <div className="text-xs uppercase tracking-wider text-muted-foreground">Similar bills in other chambers</div>
+              <p className="mt-1 text-xs text-muted-foreground">Bills with overlapping language that may be the same proposal moving in parallel.</p>
+              <ul className="mt-3 space-y-3">
+                {duplicates.map((d) => (
+                  <li key={d.id}>
+                    <Link
+                      href={`/bills/${d.jurisdiction.slug}/${d.slug}`}
+                      className="block text-sm font-medium leading-snug text-foreground no-underline hover:text-flag-green-dark"
+                    >
+                      {d.billNumber}
+                      <span className="ml-1 font-mono text-[10px] text-muted-foreground">~{d.similarityPercent}%</span>
+                    </Link>
+                    <div className="text-xs text-muted-foreground">{d.jurisdiction.name} · {d.title.slice(0, 70)}{d.title.length > 70 ? '…' : ''}</div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {related.length > 0 && (
+            <div className="rounded-lg border border-border bg-card p-4">
+              <div className="text-xs uppercase tracking-wider text-muted-foreground">Related by topic</div>
+              <ul className="mt-3 space-y-3">
+                {related.map((r) => (
+                  <li key={`${r.jurisdiction.slug}/${r.slug}`}>
+                    <Link
+                      href={`/bills/${r.jurisdiction.slug}/${r.slug}`}
+                      className="block text-sm font-medium leading-snug text-foreground no-underline hover:text-flag-green-dark"
+                    >
+                      {r.billNumber}
+                    </Link>
+                    <div className="text-xs text-muted-foreground">{r.title}</div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </aside>
+      </div>
+    </article>
+  );
+}
+
+function Fact({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-md border border-border bg-card p-3">
+      <dt className="text-xs uppercase tracking-wider text-muted-foreground">{label}</dt>
+      <dd className="mt-1 text-sm font-medium text-foreground">{value}</dd>
+    </div>
+  );
+}
+
+function countWords(text: string): number {
+  const t = text.trim();
+  return t ? t.split(/\s+/).length : 0;
+}
+
+function ReadFullBillCta({ jurisdiction, slug, wordCount }: { jurisdiction: string; slug: string; wordCount: number }) {
+  const minutes = Math.max(1, Math.round(wordCount / 220));
+  return (
+    <Link
+      href={`/bills/${jurisdiction}/${slug}/read`}
+      className="group mt-6 flex items-center justify-between gap-4 rounded-lg border border-gold/40 bg-gradient-to-br from-gold/10 via-card to-card p-5 no-underline transition-all hover:border-gold hover:shadow-[0_0_0_1px_hsl(var(--gold)/0.4)]"
+    >
+      <div>
+        <div className="font-display text-[10px] uppercase tracking-roman text-gold">Lectio Plena</div>
+        <div className="mt-1 font-serif text-xl font-medium text-foreground transition-colors group-hover:text-gold">
+          Read the full bill
+        </div>
+        <div className="mt-1 font-display text-[11px] uppercase tracking-roman text-muted-foreground">
+          {wordCount.toLocaleString()} words · ≈ {minutes} min
+        </div>
+      </div>
+      <div className="flex h-12 w-12 items-center justify-center rounded-full border border-gold/40 text-gold transition-all group-hover:border-gold group-hover:bg-gold group-hover:text-background">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden>
+          <path d="M7 4l6 6-6 6 1.4 1.4L15.8 10 8.4 2.6z" />
+        </svg>
+      </div>
+    </Link>
+  );
+}
