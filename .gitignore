@@ -29,3 +29,7 @@ prisma/migrations/dev.db*
 coverage/
 
 .vercel
+.env*
+
+# TypeScript incremental build cache (per-machine, never useful in git)
+*.tsbuildinfo
