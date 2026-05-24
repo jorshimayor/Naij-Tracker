@@ -15,8 +15,22 @@ async function bootstrap() {
     logger: ['error', 'warn', 'log'],
   });
 
+  // Comma-separated allow-list. Defaults cover localhost dev + the production domain.
+  const corsOrigins = (
+    process.env.CORS_ORIGIN ??
+    'http://localhost:3000,https://naijabilltracker.com.ng,https://www.naijabilltracker.com.ng'
+  )
+    .split(',')
+    .map((o) => o.trim())
+    .filter(Boolean);
   app.enableCors({
-    origin: process.env.CORS_ORIGIN?.split(',') ?? 'http://localhost:3000',
+    origin: (origin, callback) => {
+      // Allow same-origin / curl (no Origin header) and any explicit listed origin.
+      if (!origin || corsOrigins.includes(origin)) return callback(null, true);
+      // Allow any Vercel preview URL (deploys end in .vercel.app).
+      if (/^https:\/\/[a-z0-9-]+\.vercel\.app$/i.test(origin)) return callback(null, true);
+      return callback(new Error(`CORS blocked: ${origin}`), false);
+    },
     credentials: true,
   });
 

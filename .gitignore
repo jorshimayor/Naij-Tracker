@@ -27,3 +27,5 @@ prisma/migrations/dev.db*
 
 # coverage
 coverage/
+
+.vercel

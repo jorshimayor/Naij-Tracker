@@ -34,7 +34,7 @@ export function otpEmailHtml(code: string, ttlMinutes: number): string {
       <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:32px;font-weight:600;letter-spacing:8px;background:#f1f5f9;border:1px solid #e2e8f0;border-radius:8px;padding:16px 24px;text-align:center;margin:8px 0 20px 0;">${code}</div>
       <p style="margin:0;font-size:14px;color:#475569;">If you didn't request this, you can ignore this email.</p>
     `,
-    `You're receiving this because someone (hopefully you) entered this email at naijabilltracker.example.`,
+    `You're receiving this because someone (hopefully you) entered this email at naijabilltracker.com.ng.`,
   );
 }
 

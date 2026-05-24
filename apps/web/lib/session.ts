@@ -91,6 +91,7 @@ export async function verifyOtp(email: string, code: string): Promise<{ ok: bool
       cookies().set(SESSION_COOKIE, decodeURIComponent(m[1]), {
         httpOnly: true,
         sameSite: 'lax',
+        secure: process.env.NODE_ENV === 'production',
         path: '/',
         maxAge: 30 * 24 * 60 * 60,
       });

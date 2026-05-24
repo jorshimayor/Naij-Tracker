@@ -49,6 +49,7 @@ export async function loginToAdmin(token: string): Promise<boolean> {
   cookies().set(ADMIN_COOKIE, token, {
     httpOnly: true,
     sameSite: 'lax',
+    secure: process.env.NODE_ENV === 'production',
     maxAge: 12 * 60 * 60,
     path: '/',
   });

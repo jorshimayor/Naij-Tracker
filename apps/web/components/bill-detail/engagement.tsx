@@ -3,7 +3,8 @@ import type { BillDetail } from '@/lib/types';
 export function Engagement({ bill }: { bill: BillDetail }) {
   const primary = bill.sponsors.find((s) => s.role === 'PRIMARY')?.legislator ?? bill.sponsors[0]?.legislator;
   const shareText = `${bill.title} (${bill.billNumber}, ${bill.jurisdiction.name})`;
-  const shareUrl = `https://naijabilltracker.example/bills/${bill.jurisdiction.slug}/${bill.slug}`;
+  const publicBase = (process.env.NEXT_PUBLIC_WEB_URL ?? 'https://naijabilltracker.com.ng').replace(/\/$/, '');
+  const shareUrl = `${publicBase}/bills/${bill.jurisdiction.slug}/${bill.slug}`;
   const whatsappLink = `https://wa.me/?text=${encodeURIComponent(`${shareText}\n${shareUrl}`)}`;
   const twitterLink = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
 

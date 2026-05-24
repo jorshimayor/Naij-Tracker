@@ -1,0 +1,48 @@
+# Render.com Blueprint — deploy the NestJS API.
+# Visit https://dashboard.render.com/blueprints, point at this repo, and Render will
+# spin up the service with the build & start commands defined here.
+# Database connection is to your existing Neon Postgres (DATABASE_URL set in dashboard).
+services:
+  - type: web
+    name: nbt-api
+    runtime: node
+    plan: free
+    region: frankfurt
+    branch: main
+    buildCommand: npm install --no-audit --no-fund && npx prisma generate --schema=prisma/schema.prisma && npm run build -w @nbt/api
+    startCommand: node apps/api/dist/main.js
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: API_PORT
+        value: "10000"        # Render's default container port
+      - key: API_HOST
+        value: 0.0.0.0
+      - key: CORS_ORIGIN
+        value: https://naijabilltracker.com.ng,https://www.naijabilltracker.com.ng
+      - key: PUBLIC_WEB_URL
+        value: https://naijabilltracker.com.ng
+      # Secrets — set these in the Render dashboard, do NOT commit values.
+      - key: DATABASE_URL
+        sync: false
+      - key: AUTH_JWT_SECRET
+        sync: false
+      - key: ADMIN_TOKEN
+        sync: false
+      - key: AI_PROVIDER
+        value: groq
+      - key: AI_API_KEY
+        sync: false
+      - key: TAVILY_API_KEY
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: EMAIL_FROM
+        value: Naija Bill Tracker <alerts@naijabilltracker.com.ng>
+      - key: EMAIL_PROVIDER
+        value: resend
+      - key: USE_LIVE_SOURCES
+        value: "true"
+      - key: NASS_MAX_BILLS
+        value: "200"

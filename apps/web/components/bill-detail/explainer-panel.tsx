@@ -103,7 +103,7 @@ export function ExplainerPanel({ explainer, sensitive }: { explainer: ExplainerP
       )}
 
       <div className="rounded-md border border-border bg-card p-3 text-xs text-muted-foreground">
-        Spotted an inaccuracy? <a className="text-flag-green-dark hover:underline" href="mailto:errors@naijabilltracker.example">Tell us</a>.
+        Spotted an inaccuracy? <a className="text-flag-green-dark hover:underline" href="mailto:errors@naijabilltracker.com.ng">Tell us</a>.
         Every flag is reviewed by a human editor.
       </div>
     </div>

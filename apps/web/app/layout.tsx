@@ -19,19 +19,33 @@ const serif = Crimson_Pro({
   display: 'swap',
 });
 
+const SITE_URL = process.env.NEXT_PUBLIC_WEB_URL ?? 'https://naijabilltracker.com.ng';
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'Naija Bill Tracker',
     template: '%s · Naija Bill Tracker',
   },
   description:
-    'Track every bill moving through the Nigerian Senate, House of Representatives, and State Houses of Assembly — in plain English.',
+    'Track every bill moving through the Nigerian Senate, House of Representatives, and State Houses of Assembly — in plain English, Yorùbá, Igbo, Hausa and Naija Pidgin.',
+  applicationName: 'Naija Bill Tracker',
+  authors: [{ name: 'Naija Bill Tracker', url: SITE_URL }],
   openGraph: {
     title: 'Naija Bill Tracker',
     description:
       'Track every bill moving through the Nigerian Senate, House of Representatives, and State Houses of Assembly — in plain English.',
+    url: SITE_URL,
+    siteName: 'Naija Bill Tracker',
     type: 'website',
+    locale: 'en_NG',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Naija Bill Tracker',
+    description: 'Every bill in Nigeria, tracked and explained.',
+  },
+  robots: { index: true, follow: true },
 };
 
 // Inline script — runs before paint to set the theme class, preventing a flash of the wrong theme.

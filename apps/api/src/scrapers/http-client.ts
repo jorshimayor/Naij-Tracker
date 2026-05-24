@@ -1,6 +1,6 @@
 import { Logger } from '@nestjs/common';
 
-const USER_AGENT = 'NaijaBillTracker/1.0 (+https://naijabilltracker.org/about)';
+const USER_AGENT = 'NaijaBillTracker/1.0 (+https://naijabilltracker.com.ng/about)';
 const TIMEOUT_MS = 20_000;
 const MIN_DELAY_MS = 1500; // polite spacing between requests to the same host
 

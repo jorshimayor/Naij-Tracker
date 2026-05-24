@@ -36,6 +36,7 @@ export class AuthController {
     res.cookie(SESSION_COOKIE, token, {
       httpOnly: true,
       sameSite: 'lax',
+      secure: process.env.NODE_ENV === 'production',
       maxAge: SESSION_MAX_AGE_MS,
       path: '/',
     });
