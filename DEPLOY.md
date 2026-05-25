@@ -151,6 +151,7 @@ Add via Project → **Settings** → **Environment Variables** (mark all as **Pr
    ```
    Type   Name   Value
    A      @      76.76.21.21          # Vercel's apex IP
+   
    CNAME  www    cname.vercel-dns.com
    ```
 4. Wait for propagation; Vercel issues the SSL cert automatically
