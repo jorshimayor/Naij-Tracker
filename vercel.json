@@ -1,9 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "npm install --no-audit --no-fund && npx prisma generate --schema=prisma/schema.prisma && npm run build -w @nbt/web",
-  "installCommand": "echo 'skipping default install — handled in buildCommand'",
-  "outputDirectory": "apps/web/.next",
   "framework": "nextjs",
+  "buildCommand": "npm run build -w @nbt/web",
+  "outputDirectory": "apps/web/.next",
   "ignoreCommand": "git diff --quiet HEAD^ HEAD -- apps/web prisma/schema.prisma package.json package-lock.json vercel.json tsconfig.base.json",
   "regions": ["fra1"],
   "headers": [
