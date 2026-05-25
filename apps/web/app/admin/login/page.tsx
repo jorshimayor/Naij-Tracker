@@ -19,7 +19,7 @@ export default function AdminLoginPage({
   searchParams: { error?: string };
 }) {
   return (
-    <div className="container-prose flex min-h-[70vh] items-center py-16">
+    <div className="container-prose flex min-h-[70vh] items-center justify-center py-16">
       <div className="w-full max-w-md rounded-lg border border-border bg-card p-8 shadow-sm">
         <div className="mb-4 flex items-center gap-2">
           <span className="inline-block h-7 w-1.5 rounded bg-flag-green" aria-hidden />

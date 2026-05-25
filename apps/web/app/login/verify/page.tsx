@@ -36,7 +36,7 @@ export default function VerifyOtpPage({
   const email = searchParams.email;
 
   return (
-    <div className="container-prose flex min-h-[60vh] items-center py-12">
+    <div className="container-prose flex min-h-[60vh] items-center justify-center py-12">
       <div className="w-full max-w-md rounded-lg border border-border bg-card p-8 shadow-sm">
         <h1 className="font-serif text-2xl font-semibold tracking-tight">Enter your code</h1>
         <p className="mt-1 text-sm text-muted-foreground">
