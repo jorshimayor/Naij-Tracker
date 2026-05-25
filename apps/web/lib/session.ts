@@ -26,13 +26,20 @@ function authHeader(token?: string): HeadersInit {
 export async function getCurrentUser(): Promise<MeUser | null> {
   const token = sessionCookie();
   if (!token) return null;
-  const res = await fetch(`${API_BASE}/api/auth/me`, {
-    cache: 'no-store',
-    headers: authHeader(token),
-  });
-  if (res.status === 401) return null;
-  if (!res.ok) return null;
-  return res.json() as Promise<MeUser>;
+  try {
+    const res = await fetch(`${API_BASE}/api/auth/me`, {
+      cache: 'no-store',
+      headers: authHeader(token),
+    });
+    if (res.status === 401) return null;
+    if (!res.ok) return null;
+    return (await res.json()) as MeUser;
+  } catch (err) {
+    // API unreachable — treat as logged-out rather than 500'ing the whole page (e.g. when the
+    // API host is still warming up or the env var isn't wired yet).
+    console.warn(`[session] getCurrentUser network error: ${err instanceof Error ? err.message : err}`);
+    return null;
+  }
 }
 
 export async function requireUser(): Promise<MeUser> {
