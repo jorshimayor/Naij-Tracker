@@ -15,6 +15,9 @@ import { CommentsModule } from './comments/comments.module';
 import { ContributionsModule } from './contributions/contributions.module';
 import { EmailModule } from './email/email.module';
 import { NotificationsModule } from './notifications/notifications.module';
+import { IndicatorsModule } from './indicators/indicators.module';
+import { ConnectorsModule } from './connectors/connectors.module';
+import { LegislatorScrapersModule } from './legislator-scrapers/legislator-scrapers.module';
 
 @Controller('health')
 class HealthController {
@@ -42,6 +45,9 @@ class HealthController {
     SubscriptionsModule,
     CommentsModule,
     ContributionsModule,
+    IndicatorsModule,
+    ConnectorsModule,
+    LegislatorScrapersModule,
   ],
   controllers: [HealthController],
 })

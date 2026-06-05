@@ -96,6 +96,121 @@ export class RepresentativesService {
     };
   }
 
+  /**
+   * Per-state aggregated counts used by the /states map. Counts are:
+   *   - bills:      bills in this state's STATE_ASSEMBLY / FCT_ASSEMBLY jurisdiction
+   *   - senators:   legislators in chamber=federal-senate with matching state name
+   *   - reps:       legislators in chamber=federal-reps with matching state name
+   *   - indicators: state-level indicators (v0 has none; placeholder for future state indicators)
+   *
+   * Matches by state name (case-insensitive). The 36 + FCT canonical list lives in
+   * apps/web/lib/data/states.ts; the API doesn't need its own copy because we just return
+   * whatever name the DB has stored.
+   */
+  async stateStats() {
+    const [legislators, stateAssemblyJurisdictions] = await Promise.all([
+      this.prisma.legislator.findMany({
+        where: { state: { not: null } },
+        select: { state: true, chamber: true },
+      }),
+      this.prisma.jurisdiction.findMany({
+        where: { type: { in: ['STATE_ASSEMBLY', 'FCT_ASSEMBLY'] } },
+        select: { id: true, name: true, stateCode: true, _count: { select: { bills: true } } },
+      }),
+    ]);
+
+    // Aggregate legislator counts by (state, chamber).
+    const senators = new Map<string, number>();
+    const reps = new Map<string, number>();
+    for (const l of legislators) {
+      if (!l.state) continue;
+      const key = l.state.toLowerCase();
+      if (l.chamber === 'federal-senate') senators.set(key, (senators.get(key) ?? 0) + 1);
+      else if (l.chamber === 'federal-reps') reps.set(key, (reps.get(key) ?? 0) + 1);
+    }
+
+    // Aggregate state-assembly bills by state name.
+    const bills = new Map<string, number>();
+    for (const j of stateAssemblyJurisdictions) {
+      const key = j.name.replace(/\s+House of Assembly$/i, '').replace(/\s+Assembly$/i, '').toLowerCase();
+      bills.set(key, (bills.get(key) ?? 0) + j._count.bills);
+    }
+
+    return {
+      // Return as a flat array keyed by lowercased state name; caller resolves to ISO codes
+      // by looking up against its canonical list.
+      states: Array.from(
+        new Set([...senators.keys(), ...reps.keys(), ...bills.keys()]),
+      ).map((name) => ({
+        nameKey: name,
+        senators: senators.get(name) ?? 0,
+        reps: reps.get(name) ?? 0,
+        bills: bills.get(name) ?? 0,
+        indicators: 0,
+      })),
+    };
+  }
+
+  /**
+   * State detail used by /states/[slug]. Returns legislators (senate + reps + state assembly
+   * if the bill tracker has any), recent bills tagged to that state's jurisdiction, and any
+   * state-level indicators (v0: none).
+   */
+  async stateDetail(stateName: string) {
+    const nameLc = stateName.toLowerCase();
+
+    const [senators, reps, stateAssemblyJurisdictions] = await Promise.all([
+      this.prisma.legislator.findMany({
+        where: { chamber: 'federal-senate', state: { equals: stateName, mode: 'insensitive' } },
+        orderBy: { fullName: 'asc' },
+        select: {
+          slug: true, fullName: true, party: true, constituency: true, photoUrl: true,
+          contactEmail: true, state: true,
+        },
+      }),
+      this.prisma.legislator.findMany({
+        where: { chamber: 'federal-reps', state: { equals: stateName, mode: 'insensitive' } },
+        orderBy: { fullName: 'asc' },
+        select: {
+          slug: true, fullName: true, party: true, constituency: true, photoUrl: true,
+          contactEmail: true, state: true,
+        },
+      }),
+      this.prisma.jurisdiction.findMany({
+        where: {
+          type: { in: ['STATE_ASSEMBLY', 'FCT_ASSEMBLY'] },
+          name: { contains: stateName, mode: 'insensitive' },
+        },
+        select: { id: true, slug: true, name: true },
+      }),
+    ]);
+
+    const assemblyIds = stateAssemblyJurisdictions.map((j) => j.id);
+    const stateAssemblyBills = assemblyIds.length
+      ? await this.prisma.bill.findMany({
+          where: { jurisdictionId: { in: assemblyIds } },
+          orderBy: { lastActionDate: 'desc' },
+          take: 10,
+          select: {
+            billNumber: true, title: true, slug: true, currentStage: true,
+            jurisdiction: { select: { slug: true, name: true } },
+            lastActionDate: true,
+          },
+        })
+      : [];
+
+    return {
+      state: stateName,
+      senators,
+      reps,
+      stateAssemblies: stateAssemblyJurisdictions,
+      stateAssemblyBills,
+      // Reserved — state-level indicator slug pattern would be e.g. `igr-${slug}` once seeded.
+      indicators: [] as { slug: string; name: string }[],
+      _matchedNameLc: nameLc,
+    };
+  }
+
   private serialize(leg: any) {
     if (!leg) return null;
     return {

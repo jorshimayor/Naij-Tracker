@@ -87,9 +87,44 @@ export interface TranslateExplainerOutput {
   modelUsed: string;
 }
 
+export interface IndicatorExplainerInput {
+  /** Indicator slug, e.g. "headline-cpi-yoy". */
+  indicatorSlug: string;
+  indicatorName: string;
+  /** Pillar enum value as a string, e.g. "MONEY_PRICES". */
+  pillar: string;
+  /** Unit label shown next to values in the UI, e.g. "% YoY". */
+  unitLabel: string;
+  /** One-line description of what the indicator measures. */
+  description: string;
+  /** Source's official name, e.g. "National Bureau of Statistics". */
+  sourceName: string;
+  /** Observations in ascending date order; the last entry is the latest. */
+  observations: { date: string; value: number }[];
+}
+
+export interface IndicatorExplainerOutput {
+  /** One sentence for citizens; appears in cards and hero. */
+  tldr: string;
+  /** ~150-word plain-English description of what the indicator means right now. */
+  plainEnglish: string;
+  /** What moved in the latest period and the most likely drivers (factual, no speculation). */
+  whatChanged: string;
+  /** 3-5 bullets contextualized to common Nigerian roles (worker, parent, trader, civil servant). */
+  howItAffectsYou: string[];
+  /** True if this release requires human editorial sign-off before public display. */
+  sensitive: boolean;
+  modelUsed: string;
+}
+
 export interface AIProvider {
   generateExplainer(input: ExplainerInput): Promise<ExplainerOutput>;
   classifyTopics(input: TaggerInput, taxonomy: { slug: string; name: string }[]): Promise<TaggerOutput>;
   verifyExplainer(input: VerifyInput): Promise<VerifyOutput>;
   translateExplainer(input: TranslateExplainerInput): Promise<TranslateExplainerOutput>;
+  /**
+   * Generate a plain-English explainer for an economic indicator release (PRD §6.4.1).
+   * Strict contract: must not invent numeric values that are not in `observations`.
+   */
+  explainIndicator(input: IndicatorExplainerInput): Promise<IndicatorExplainerOutput>;
 }

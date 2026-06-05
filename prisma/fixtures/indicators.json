@@ -1,0 +1,135 @@
+[
+  {
+    "slug": "headline-cpi-yoy",
+    "name": "Headline CPI (YoY)",
+    "pillar": "MONEY_PRICES",
+    "subCategory": "inflation",
+    "unit": "percent_yoy",
+    "unitLabel": "% YoY",
+    "frequency": "MONTHLY",
+    "sourceSlug": "nbs",
+    "description": "Year-on-year change in the consumer price index across all goods and services tracked by the NBS basket. The headline measure of inflation."
+  },
+  {
+    "slug": "food-cpi-yoy",
+    "name": "Food CPI (YoY)",
+    "pillar": "MONEY_PRICES",
+    "subCategory": "inflation",
+    "unit": "percent_yoy",
+    "unitLabel": "% YoY",
+    "frequency": "MONTHLY",
+    "sourceSlug": "nbs",
+    "description": "Year-on-year change in food prices. Tracks the household food basket — typically the most-watched component for everyday Nigerians."
+  },
+  {
+    "slug": "mpr",
+    "name": "Monetary Policy Rate",
+    "pillar": "MONEY_PRICES",
+    "subCategory": "interest-rates",
+    "unit": "percent",
+    "unitLabel": "%",
+    "frequency": "MONTHLY",
+    "sourceSlug": "cbn",
+    "description": "The CBN's benchmark interest rate. Set by the Monetary Policy Committee at its bi-monthly meetings."
+  },
+  {
+    "slug": "usd-ngn-nafem",
+    "name": "Naira / USD (NAFEM)",
+    "pillar": "FX_EXTERNAL",
+    "subCategory": "fx",
+    "unit": "ngn_per_usd",
+    "unitLabel": "₦ / $",
+    "frequency": "DAILY",
+    "sourceSlug": "cbn",
+    "description": "Official Naira-Dollar exchange rate at the Nigerian Autonomous Foreign Exchange Market (NAFEM)."
+  },
+  {
+    "slug": "external-reserves",
+    "name": "Gross External Reserves",
+    "pillar": "FX_EXTERNAL",
+    "subCategory": "reserves",
+    "unit": "usd_billions",
+    "unitLabel": "$bn",
+    "frequency": "WEEKLY",
+    "sourceSlug": "cbn",
+    "description": "Total foreign exchange holdings of the CBN. A buffer against external shocks and a key driver of FX defence."
+  },
+  {
+    "slug": "crude-oil-production",
+    "name": "Crude Oil Production",
+    "pillar": "FX_EXTERNAL",
+    "subCategory": "oil",
+    "unit": "mbpd",
+    "unitLabel": "mbpd",
+    "frequency": "MONTHLY",
+    "sourceSlug": "nuprc",
+    "description": "Average daily crude oil production excluding condensate, in million barrels per day. Aggregated by NUPRC across all producing terminals."
+  },
+  {
+    "slug": "ngx-asi",
+    "name": "NGX All-Share Index",
+    "pillar": "MARKETS",
+    "subCategory": "equities",
+    "unit": "index_points",
+    "unitLabel": "pts",
+    "frequency": "DAILY",
+    "sourceSlug": "ngx",
+    "description": "Broad measure of the Nigerian equities market, weighted by market capitalisation across all listed equities on the Main Board."
+  },
+  {
+    "slug": "faac-allocation",
+    "name": "Monthly FAAC Allocation",
+    "pillar": "PUBLIC_FINANCE",
+    "subCategory": "faac",
+    "unit": "ngn_billions",
+    "unitLabel": "₦bn",
+    "frequency": "MONTHLY",
+    "sourceSlug": "budget-office",
+    "description": "Federal revenue shared each month between federal, state and local government tiers through the Federation Account Allocation Committee."
+  },
+  {
+    "slug": "total-public-debt",
+    "name": "Total Public Debt Stock",
+    "pillar": "DEBT",
+    "subCategory": "stock",
+    "unit": "ngn_trillions",
+    "unitLabel": "₦trn",
+    "frequency": "QUARTERLY",
+    "sourceSlug": "dmo",
+    "description": "Combined federal and state external plus domestic debt stock. Published quarterly in the DMO's debt bulletin."
+  },
+  {
+    "slug": "debt-service-to-revenue",
+    "name": "Debt Service to Revenue",
+    "pillar": "DEBT",
+    "subCategory": "sustainability",
+    "unit": "percent",
+    "unitLabel": "%",
+    "frequency": "QUARTERLY",
+    "sourceSlug": "dmo",
+    "description": "Share of federal government revenue spent on servicing debt. The single most-watched sustainability metric for Nigeria's public finances.",
+    "sensitiveFlag": true
+  },
+  {
+    "slug": "real-gdp-growth",
+    "name": "Real GDP Growth",
+    "pillar": "REAL_ECONOMY",
+    "subCategory": "gdp",
+    "unit": "percent_yoy",
+    "unitLabel": "% YoY",
+    "frequency": "QUARTERLY",
+    "sourceSlug": "nbs",
+    "description": "Year-on-year real (inflation-adjusted) growth in Gross Domestic Product, published quarterly by the NBS."
+  },
+  {
+    "slug": "unemployment-rate",
+    "name": "Unemployment Rate",
+    "pillar": "REAL_ECONOMY",
+    "subCategory": "labour",
+    "unit": "percent",
+    "unitLabel": "%",
+    "frequency": "QUARTERLY",
+    "sourceSlug": "nbs",
+    "description": "Share of the labour force without paid work and actively seeking it, per the NBS Nigeria Labour Force Survey methodology."
+  }
+]

@@ -27,6 +27,9 @@
     "ingest:reps": "tsx apps/api/src/cli/ingest.ts reps",
     "ingest:lagos": "tsx apps/api/src/cli/ingest.ts lagos",
     "ingest:all": "tsx apps/api/src/cli/ingest.ts all",
+    "ingest:cpi": "tsx apps/api/src/cli/ingest-economy.ts cpi",
+    "ingest:economy": "tsx apps/api/src/cli/ingest-economy.ts all",
+    "ingest:senators": "tsx apps/api/src/cli/ingest-legislators.ts senators",
     "ai:reset": "tsx apps/api/src/cli/reset-explainers.ts"
   },
   "devDependencies": {

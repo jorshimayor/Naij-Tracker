@@ -237,6 +237,29 @@ export default async function BillDetailPage({
             </dl>
           </div>
 
+          {bill.indicators && bill.indicators.length > 0 && (
+            <div className="rounded-lg border border-border bg-card p-4">
+              <div className="text-xs uppercase tracking-wider text-muted-foreground">Indicators this bill could affect</div>
+              <p className="mt-1 text-xs text-muted-foreground">Curated mapping. The economy tracker page for each indicator shows the bills tagged against it.</p>
+              <ul className="mt-3 space-y-3">
+                {bill.indicators.map((i) => (
+                  <li key={i.slug}>
+                    <Link
+                      href={`/economy/indicators/${i.slug}`}
+                      className="block text-sm font-medium leading-snug text-foreground no-underline hover:text-flag-green-dark"
+                    >
+                      {i.name}
+                      <span className="ml-1 font-mono text-[10px] text-muted-foreground">{i.unitLabel}</span>
+                    </Link>
+                    {i.note && (
+                      <div className="text-xs text-muted-foreground">{i.note}</div>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
           {duplicates.length > 0 && (
             <div className="rounded-lg border border-border bg-card p-4">
               <div className="text-xs uppercase tracking-wider text-muted-foreground">Similar bills in other chambers</div>

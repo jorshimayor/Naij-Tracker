@@ -1,6 +1,7 @@
 import { Global, Module, Logger } from '@nestjs/common';
 import { ExplainerService } from './explainer.service';
 import { TaggerService } from './tagger.service';
+import { IndicatorExplainerService } from './indicator-explainer.service';
 import { MockClaudeProvider } from './providers/mock-claude.provider';
 import { ClaudeProvider } from './providers/claude.provider';
 import { OpenAICompatibleProvider } from './providers/openai-compatible.provider';
@@ -34,7 +35,8 @@ const OPENAI_COMPAT = new Set(['groq', 'deepseek', 'openrouter', 'gemini', 'open
     },
     ExplainerService,
     TaggerService,
+    IndicatorExplainerService,
   ],
-  exports: [ExplainerService, TaggerService, AI_PROVIDER],
+  exports: [ExplainerService, TaggerService, IndicatorExplainerService, AI_PROVIDER],
 })
 export class AiModule {}

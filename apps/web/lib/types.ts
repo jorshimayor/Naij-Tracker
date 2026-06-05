@@ -92,6 +92,14 @@ export interface BillDetail {
   topics: (TopicRef & { source: string; confidence?: number })[];
   stageEvents: { stage: BillStage; occurredOn: string; notes?: string | null }[];
   documents: { type: string; url: string; description?: string | null; retrievedAt: string }[];
+  indicators?: {
+    slug: string;
+    name: string;
+    pillar: string;
+    unitLabel: string;
+    relevance: number;
+    note: string | null;
+  }[];
   explainer: ExplainerPayload | null;
 }
 
@@ -142,6 +150,80 @@ export interface TopicDetail {
     jurisdiction: JurisdictionRef;
     primarySponsor?: LegislatorRef;
     confidence?: number;
+  }[];
+}
+
+export type IndicatorPillar =
+  | 'MONEY_PRICES' | 'FX_EXTERNAL' | 'MARKETS' | 'PUBLIC_FINANCE' | 'DEBT' | 'REAL_ECONOMY';
+
+export type IndicatorFrequency = 'DAILY' | 'WEEKLY' | 'MONTHLY' | 'QUARTERLY' | 'ANNUAL';
+
+export interface SourceRef {
+  slug: string;
+  name: string;
+  acronym?: string | null;
+  homepageUrl?: string | null;
+}
+
+export interface IndicatorListItem {
+  slug: string;
+  name: string;
+  pillar: IndicatorPillar;
+  subCategory: string | null;
+  unitLabel: string;
+  frequency: IndicatorFrequency;
+  sensitiveFlag: boolean;
+  description: string | null;
+  source: SourceRef;
+  latest: { date: string; value: number; change: number | null } | null;
+  explainerTldr: string | null;
+}
+
+export interface IndicatorListResponse {
+  total: number;
+  results: IndicatorListItem[];
+}
+
+export interface IndicatorObservation {
+  date: string;
+  value: number;
+}
+
+export interface IndicatorDetail {
+  slug: string;
+  name: string;
+  pillar: IndicatorPillar;
+  subCategory: string | null;
+  unit: string;
+  unitLabel: string;
+  frequency: IndicatorFrequency;
+  sensitiveFlag: boolean;
+  description: string | null;
+  methodologyDoc: string | null;
+  source: SourceRef;
+  latest: IndicatorObservation | null;
+  changeVsPrevious: number | null;
+  changeVsYearAgo: number | null;
+  observations: IndicatorObservation[];
+  explainer: {
+    status: ExplainerStatus;
+    visible: boolean;
+    observationDate: string;
+    generatedAt: string;
+    modelUsed: string;
+    tldr: string | null;
+    plainEnglish: string | null;
+    whatChanged: string | null;
+    howItAffectsYou: string[] | null;
+  } | null;
+  relatedBills: {
+    billNumber: string;
+    title: string;
+    slug: string;
+    currentStage: BillStage;
+    jurisdiction: JurisdictionRef;
+    relevance: number;
+    note: string | null;
   }[];
 }
 

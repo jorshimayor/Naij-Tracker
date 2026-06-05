@@ -177,6 +177,15 @@ export class BillsService {
         documents: { orderBy: { retrievedAt: 'desc' } },
         // Pull every language version so we know which translations exist.
         explainers: { orderBy: [{ version: 'desc' }, { language: 'asc' }] },
+        indicatorLinks: {
+          include: {
+            indicator: {
+              select: { slug: true, name: true, pillar: true, unitLabel: true },
+            },
+          },
+          orderBy: { relevance: 'desc' },
+          take: 8,
+        },
       },
     });
     if (!bill) throw new NotFoundException(`Bill "${slug}" not found in ${jurisdictionSlug}`);
@@ -357,6 +366,14 @@ export class BillsService {
         url: d.url,
         description: d.description,
         retrievedAt: d.retrievedAt,
+      })),
+      indicators: (b.indicatorLinks ?? []).map((l: any) => ({
+        slug: l.indicator.slug,
+        name: l.indicator.name,
+        pillar: l.indicator.pillar,
+        unitLabel: l.indicator.unitLabel,
+        relevance: l.relevance,
+        note: l.note,
       })),
       explainer: explainer
         ? {

@@ -1,0 +1,5 @@
+- Find my rep section isn't detailed enough, I want all the state and all the reps rightly profiled and displayed.
+- More Bills need to be added.
+- Favicon need to be added, it should depict nigeria lawsa nd economics.
+- Add a map visual with a stunning map of Nigeria where you can hover an see details on Senate and House of Rep seat, you can also click on it and see more details on Bills on NAAS and House of Assembly/Governor and Economic details
+- Redesign the NavBar so it's distinct between the Bills and the Economic links

@@ -96,6 +96,23 @@ enum ContributionStatus {
   PUBLISHED
 }
 
+enum IndicatorPillar {
+  MONEY_PRICES
+  FX_EXTERNAL
+  MARKETS
+  PUBLIC_FINANCE
+  DEBT
+  REAL_ECONOMY
+}
+
+enum IndicatorFrequency {
+  DAILY
+  WEEKLY
+  MONTHLY
+  QUARTERLY
+  ANNUAL
+}
+
 model Jurisdiction {
   id        String           @id @default(cuid())
   name      String
@@ -138,6 +155,7 @@ model Bill {
   documents    SourceDocument[]
   explainers   AIExplainer[]
   comments     Comment[]
+  indicatorLinks BillIndicatorLink[]
   publishedFromContribution ContributedBill[] @relation("PublishedFromContribution")
 
   @@unique([jurisdictionId, billNumber])
@@ -288,6 +306,7 @@ model User {
   subscriptions     Subscription[]
   comments          Comment[]
   reviewedExplainers AIExplainer[] @relation("ExplainerReviewer")
+  reviewedIndicatorExplainers IndicatorExplainer[] @relation("IndicatorExplainerReviewer")
   auditLogs         AuditLog[]
   submissions       ContributedBill[] @relation("ContributionSubmitter")
   contributionReviews ContributedBill[] @relation("ContributionReviewer")
@@ -400,4 +419,143 @@ model AuditLog {
   @@index([entityType, entityId])
   @@index([actorId, createdAt])
   @@map("audit_logs")
+}
+
+// =====================================================================
+// Economy tracker (PRD §8.4 — companion product to the bill tracker).
+// Plain Postgres for v0 — no Timescale/pgvector. Observations volume at
+// monthly/quarterly cadence is trivial; partitioning can come later.
+// =====================================================================
+
+model Source {
+  id           String   @id @default(cuid())
+  slug         String   @unique
+  name         String
+  acronym      String?
+  homepageUrl  String?  @map("homepage_url")
+  description  String?
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  indicators Indicator[]
+  releases   SourceRelease[]
+
+  @@map("sources")
+}
+
+model SourceRelease {
+  id           String   @id @default(cuid())
+  sourceId     String   @map("source_id")
+  releaseUrl   String?  @map("release_url")
+  releaseDate  DateTime @map("release_date")
+  contentHash  String?  @map("content_hash")
+  storageKey   String?  @map("storage_key")
+  // True when the release was loaded from a bundled fixture rather than a live source.
+  // The UI surfaces a "sample data" badge so v0 fixture values are never mistaken for official.
+  sample       Boolean  @default(false)
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  source       Source        @relation(fields: [sourceId], references: [id])
+  observations Observation[]
+
+  @@index([sourceId, releaseDate])
+  @@map("source_releases")
+}
+
+model Indicator {
+  id              String              @id @default(cuid())
+  slug            String              @unique
+  name            String
+  pillar          IndicatorPillar
+  subCategory     String?             @map("sub_category")
+  // Canonical unit code ("percent_yoy", "ngn_per_usd", "usd_billions"). Drives chart formatting.
+  unit            String
+  // Short human-readable suffix shown next to values ("% YoY", "₦ / $").
+  unitLabel       String              @map("unit_label")
+  frequency       IndicatorFrequency
+  sourceId        String              @map("source_id")
+  // Optional URL or markdown blob describing methodology.
+  methodologyDoc  String?             @map("methodology_doc")
+  description     String?
+  // PRD §6.4.1: sensitive indicators (parallel FX, debt service ratio) require editorial sign-off
+  // on every AI explainer before public display.
+  sensitiveFlag   Boolean             @default(false) @map("sensitive_flag")
+  createdAt       DateTime            @default(now()) @map("created_at")
+  updatedAt       DateTime            @updatedAt @map("updated_at")
+
+  source       Source               @relation(fields: [sourceId], references: [id])
+  observations Observation[]
+  explainers   IndicatorExplainer[]
+  billLinks    BillIndicatorLink[]
+
+  @@index([pillar])
+  @@map("indicators")
+}
+
+model Observation {
+  id              String   @id @default(cuid())
+  indicatorId     String   @map("indicator_id")
+  // Period-end date the observation refers to (e.g. 2026-05-01 for May 2026 CPI).
+  date            DateTime
+  value           Decimal  @db.Decimal(18, 6)
+  // Optional secondary value for ranges or confidence intervals (unused in v0).
+  valueSecondary  Decimal? @db.Decimal(18, 6) @map("value_secondary")
+  releaseId       String?  @map("release_id")
+  // If this observation supersedes a prior one (NBS frequently revises), point to it.
+  revisionOf      String?  @map("revision_of")
+  ingestedAt      DateTime @default(now()) @map("ingested_at")
+
+  indicator Indicator      @relation(fields: [indicatorId], references: [id], onDelete: Cascade)
+  release   SourceRelease? @relation(fields: [releaseId], references: [id])
+  revises   Observation?   @relation("ObservationRevisions", fields: [revisionOf], references: [id])
+  revisions Observation[]  @relation("ObservationRevisions")
+
+  @@unique([indicatorId, date])
+  @@index([indicatorId, date])
+  @@map("observations")
+}
+
+model IndicatorExplainer {
+  id              String          @id @default(cuid())
+  indicatorId     String          @map("indicator_id")
+  // The observation this explainer is about — typically the latest release.
+  observationDate DateTime        @map("observation_date")
+  version         Int             @default(1)
+  tldr            String
+  plainEnglish    String          @map("plain_english")
+  whatChanged     String          @map("what_changed")
+  howItAffectsYou Json            @map("how_it_affects_you")
+  status          ExplainerStatus @default(DRAFT)
+  modelUsed       String          @map("model_used")
+  generatedAt     DateTime        @default(now()) @map("generated_at")
+  reviewerId      String?         @map("reviewer_id")
+  reviewedAt      DateTime?       @map("reviewed_at")
+  reviewerNote    String?         @map("reviewer_note")
+  language        String          @default("en")
+
+  indicator Indicator @relation(fields: [indicatorId], references: [id], onDelete: Cascade)
+  reviewer  User?     @relation("IndicatorExplainerReviewer", fields: [reviewerId], references: [id])
+
+  @@unique([indicatorId, observationDate, version, language])
+  @@index([indicatorId, status])
+  @@map("indicator_explainers")
+}
+
+// Cross-link between bills (legislation) and indicators (outcomes). v0 is seeded from a
+// curated fixture; future versions will let the AI tagger or editors populate it.
+model BillIndicatorLink {
+  billId      String   @map("bill_id")
+  indicatorId String   @map("indicator_id")
+  relevance   Float    @default(0.5)
+  // "fixture" (v0 seed), "ai" (auto-tagger), or "editor" (manual).
+  source      String   @default("fixture")
+  note        String?
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  bill      Bill      @relation(fields: [billId], references: [id], onDelete: Cascade)
+  indicator Indicator @relation(fields: [indicatorId], references: [id], onDelete: Cascade)
+
+  @@id([billId, indicatorId])
+  @@index([indicatorId])
+  @@map("bill_indicator_links")
 }

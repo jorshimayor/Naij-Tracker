@@ -1,4 +1,10 @@
-import type { ExplainerInput, TaggerInput, VerifyInput, TranslateExplainerInput } from '../providers/ai-provider.interface';
+import type {
+  ExplainerInput,
+  TaggerInput,
+  VerifyInput,
+  TranslateExplainerInput,
+  IndicatorExplainerInput,
+} from '../providers/ai-provider.interface';
 
 /**
  * Production prompts for the Claude provider. The mock provider does not use these — it relies on
@@ -152,6 +158,53 @@ Output JSON shape:
   "jargonTerms": [{"term": string, "definition": string}]
 }`;
   return { system: TRANSLATE_SYSTEM, user };
+}
+
+const INDICATOR_EXPLAINER_SYSTEM = `You are a non-partisan economic explainer for Nigerian audiences. You translate a numeric
+economic indicator release into clear, neutral, everyday English for ordinary Nigerians.
+
+Rules you must follow:
+  1. Do not invent or estimate any numeric value that is not in the observation series provided.
+     Quote the latest value verbatim from the series.
+  2. Do not speculate on causes. Describe what changed. Do not say "likely caused by X" unless
+     the input enumerates concurrent events.
+  3. Use neutral language. Do not blame or credit any administration, party or official.
+  4. The TLDR must be one sentence at a Primary 6 reading level, citing the latest value and
+     the direction of change.
+  5. The plainEnglish section must be 100-200 words and read at a secondary-school level.
+  6. The whatChanged section is one short paragraph describing the latest-period movement.
+  7. The howItAffectsYou bullets (3-5) must be framed to common Nigerian roles (worker, parent,
+     trader, civil servant, student) and describe direct, immediate effects only.
+  8. If the indicator is one of: debt service to revenue ratio, parallel-market FX rates, or any
+     official-vs-parallel spread, set sensitive=true so a human editor reviews before publication.
+  9. Return STRICT JSON matching the schema in the user prompt.`;
+
+export function buildIndicatorExplainerPrompt(
+  input: IndicatorExplainerInput,
+): { system: string; user: string } {
+  // Send the most recent 24 observations to keep the prompt compact. The model only needs recent
+  // history to describe direction and magnitude — full history is available via the API.
+  const recent = input.observations.slice(-24);
+  const user = `Indicator metadata:
+  - Slug: ${input.indicatorSlug}
+  - Name: ${input.indicatorName}
+  - Pillar: ${input.pillar}
+  - Unit: ${input.unitLabel}
+  - Source: ${input.sourceName}
+  - Description: ${input.description}
+
+Recent observation series (ascending date order; the last entry is the latest release):
+${JSON.stringify(recent, null, 2)}
+
+Return STRICT JSON with this exact shape:
+{
+  "tldr": string,                            // one sentence, Primary 6 reading level, must cite the latest value
+  "plainEnglish": string,                    // 100-200 words
+  "whatChanged": string,                     // one paragraph describing the latest movement
+  "howItAffectsYou": string[],               // 3-5 bullets framed to ordinary Nigerian roles
+  "sensitive": boolean                       // true for debt-service-to-revenue or any parallel-FX surface
+}`;
+  return { system: INDICATOR_EXPLAINER_SYSTEM, user };
 }
 
 export function buildTaggingPrompt(

@@ -11,8 +11,16 @@ import type {
   VerifyCheck,
   TranslateExplainerInput,
   TranslateExplainerOutput,
+  IndicatorExplainerInput,
+  IndicatorExplainerOutput,
 } from './ai-provider.interface';
-import { buildExplainerPrompt, buildTaggingPrompt, buildVerifyPrompt, buildTranslatePrompt } from '../prompts/explainer.prompt';
+import {
+  buildExplainerPrompt,
+  buildTaggingPrompt,
+  buildVerifyPrompt,
+  buildTranslatePrompt,
+  buildIndicatorExplainerPrompt,
+} from '../prompts/explainer.prompt';
 
 /**
  * OpenAI-API-compatible provider. Works with:
@@ -117,6 +125,32 @@ export class OpenAICompatibleProvider implements AIProvider {
       overallVerdict: verdict(json.overallVerdict),
       summary: typeof json.summary === 'string' ? json.summary : '',
       checks,
+      modelUsed: `${this.providerName}:${this.model}`,
+    };
+  }
+
+  async explainIndicator(input: IndicatorExplainerInput): Promise<IndicatorExplainerOutput> {
+    const { system, user } = buildIndicatorExplainerPrompt(input);
+    const json = await this.callJson(system, user);
+
+    const tldr = typeof json.tldr === 'string' ? json.tldr : `${input.indicatorName} update.`;
+    const plainEnglish = typeof json.plainEnglish === 'string' ? json.plainEnglish : '';
+    const whatChanged = typeof json.whatChanged === 'string' ? json.whatChanged : '';
+    const howItAffectsYou = arrayOfStrings(json.howItAffectsYou ?? json.how_it_affects_you);
+    const modelSensitive = typeof json.sensitive === 'boolean' ? json.sensitive : false;
+
+    // Safety net: regardless of what the model returns, force sensitive=true for the categories
+    // PRD §6.4.3 says must always be gated on editorial review.
+    const heuristicSensitive =
+      input.indicatorSlug === 'debt-service-to-revenue' ||
+      input.indicatorSlug.includes('parallel');
+
+    return {
+      tldr,
+      plainEnglish,
+      whatChanged,
+      howItAffectsYou,
+      sensitive: modelSensitive || heuristicSensitive,
       modelUsed: `${this.providerName}:${this.model}`,
     };
   }

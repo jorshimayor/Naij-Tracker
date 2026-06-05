@@ -18,6 +18,8 @@ export interface FetchOptions {
   maxAttempts?: number;
   /** Force-skip robots.txt for known-friendly URLs (e.g., paginated index pages). */
   skipRobots?: boolean;
+  /** Additional headers merged on top of the defaults (User-Agent, Accept). */
+  headers?: Record<string, string>;
 }
 
 export async function fetchHtml(url: string, opts: FetchOptions = {}): Promise<string> {
@@ -34,7 +36,11 @@ export async function fetchHtml(url: string, opts: FetchOptions = {}): Promise<s
     const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
     try {
       const res = await fetch(url, {
-        headers: { 'User-Agent': USER_AGENT, 'Accept': 'text/html,application/xhtml+xml' },
+        headers: {
+          'User-Agent': USER_AGENT,
+          'Accept': 'text/html,application/xhtml+xml',
+          ...(opts.headers ?? {}),
+        },
         signal: controller.signal,
         redirect: 'follow',
       });

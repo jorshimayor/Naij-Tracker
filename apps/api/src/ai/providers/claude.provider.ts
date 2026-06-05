@@ -9,6 +9,8 @@ import type {
   VerifyOutput,
   TranslateExplainerInput,
   TranslateExplainerOutput,
+  IndicatorExplainerInput,
+  IndicatorExplainerOutput,
 } from './ai-provider.interface';
 import { buildExplainerPrompt, buildTaggingPrompt } from '../prompts/explainer.prompt';
 
@@ -67,5 +69,12 @@ export class ClaudeProvider implements AIProvider {
 
   async translateExplainer(_input: TranslateExplainerInput): Promise<TranslateExplainerOutput> {
     throw new Error('ClaudeProvider.translateExplainer not implemented in v0.');
+  }
+
+  async explainIndicator(_input: IndicatorExplainerInput): Promise<IndicatorExplainerOutput> {
+    // TODO: Build a prompt that includes the full observation series and requires the model to
+    // cite the latest figure verbatim. Forbid speculative drivers ("likely caused by X") unless
+    // the prompt is enriched with concurrent indicators or news (deferred to v1).
+    throw new Error('ClaudeProvider.explainIndicator not implemented in v0.');
   }
 }

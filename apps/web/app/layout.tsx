@@ -48,6 +48,14 @@ export const metadata: Metadata = {
     description: 'Every bill in Nigeria, tracked and explained.',
   },
   robots: { index: true, follow: true },
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.svg', type: 'image/svg+xml', sizes: '180x180' },
+    ],
+  },
 };
 
 // Inline script — runs before paint to set the theme class, preventing a flash of the wrong theme.

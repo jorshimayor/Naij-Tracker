@@ -1,0 +1,44 @@
+[
+  {
+    "slug": "nbs",
+    "name": "National Bureau of Statistics",
+    "acronym": "NBS",
+    "homepageUrl": "https://www.nigerianstat.gov.ng/",
+    "description": "Federal statistical agency. Publishes CPI, GDP, employment, household consumption and poverty surveys."
+  },
+  {
+    "slug": "cbn",
+    "name": "Central Bank of Nigeria",
+    "acronym": "CBN",
+    "homepageUrl": "https://www.cbn.gov.ng/",
+    "description": "Monetary authority. Publishes the Monetary Policy Rate, FX rates, external reserves, money supply and balance of payments."
+  },
+  {
+    "slug": "dmo",
+    "name": "Debt Management Office",
+    "acronym": "DMO",
+    "homepageUrl": "https://www.dmo.gov.ng/",
+    "description": "Manages Nigeria's public debt and publishes the quarterly debt bulletin."
+  },
+  {
+    "slug": "budget-office",
+    "name": "Budget Office of the Federation",
+    "acronym": "BOF",
+    "homepageUrl": "https://www.budgetoffice.gov.ng/",
+    "description": "Prepares and publishes the federal budget — proposed, approved and executed."
+  },
+  {
+    "slug": "nuprc",
+    "name": "Nigerian Upstream Petroleum Regulatory Commission",
+    "acronym": "NUPRC",
+    "homepageUrl": "https://www.nuprc.gov.ng/",
+    "description": "Regulates upstream petroleum operations and publishes monthly crude oil production by terminal."
+  },
+  {
+    "slug": "ngx",
+    "name": "Nigerian Exchange Group",
+    "acronym": "NGX",
+    "homepageUrl": "https://ngxgroup.com/",
+    "description": "Nigeria's primary equities market. Publishes the All-Share Index and sector indices."
+  }
+]

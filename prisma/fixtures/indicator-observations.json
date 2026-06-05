@@ -1,0 +1,119 @@
+{
+  "_meta": {
+    "purpose": "Seed-only sample observations for non-CPI indicators. All values are illustrative — NOT official figures. Seeded with sample=true on the SourceRelease.",
+    "releaseDate": "2026-05-15"
+  },
+  "indicators": [
+    {
+      "slug": "mpr",
+      "observations": [
+        { "date": "2025-06-01", "value": 27.50 },
+        { "date": "2025-07-01", "value": 27.50 },
+        { "date": "2025-08-01", "value": 27.25 },
+        { "date": "2025-09-01", "value": 27.00 },
+        { "date": "2025-10-01", "value": 26.75 },
+        { "date": "2025-11-01", "value": 26.50 },
+        { "date": "2025-12-01", "value": 26.25 },
+        { "date": "2026-01-01", "value": 26.00 },
+        { "date": "2026-02-01", "value": 25.75 },
+        { "date": "2026-03-01", "value": 25.50 },
+        { "date": "2026-04-01", "value": 25.25 },
+        { "date": "2026-05-01", "value": 25.00 }
+      ]
+    },
+    {
+      "slug": "usd-ngn-nafem",
+      "observations": [
+        { "date": "2025-06-01", "value": 1580.20 },
+        { "date": "2025-07-01", "value": 1602.45 },
+        { "date": "2025-08-01", "value": 1618.30 },
+        { "date": "2025-09-01", "value": 1645.10 },
+        { "date": "2025-10-01", "value": 1672.85 },
+        { "date": "2025-11-01", "value": 1655.40 },
+        { "date": "2025-12-01", "value": 1620.50 },
+        { "date": "2026-01-01", "value": 1598.75 },
+        { "date": "2026-02-01", "value": 1610.25 },
+        { "date": "2026-03-01", "value": 1585.60 },
+        { "date": "2026-04-01", "value": 1572.40 },
+        { "date": "2026-05-01", "value": 1565.80 }
+      ]
+    },
+    {
+      "slug": "external-reserves",
+      "observations": [
+        { "date": "2025-06-01", "value": 36.42 },
+        { "date": "2025-07-01", "value": 36.85 },
+        { "date": "2025-08-01", "value": 37.10 },
+        { "date": "2025-09-01", "value": 37.55 },
+        { "date": "2025-10-01", "value": 38.20 },
+        { "date": "2025-11-01", "value": 38.75 },
+        { "date": "2025-12-01", "value": 39.12 },
+        { "date": "2026-01-01", "value": 39.40 },
+        { "date": "2026-02-01", "value": 39.85 },
+        { "date": "2026-03-01", "value": 40.10 },
+        { "date": "2026-04-01", "value": 40.55 },
+        { "date": "2026-05-01", "value": 40.92 }
+      ]
+    },
+    {
+      "slug": "crude-oil-production",
+      "observations": [
+        { "date": "2025-06-01", "value": 1.42 },
+        { "date": "2025-07-01", "value": 1.45 },
+        { "date": "2025-08-01", "value": 1.48 },
+        { "date": "2025-09-01", "value": 1.50 },
+        { "date": "2025-10-01", "value": 1.52 },
+        { "date": "2025-11-01", "value": 1.55 },
+        { "date": "2025-12-01", "value": 1.56 },
+        { "date": "2026-01-01", "value": 1.58 },
+        { "date": "2026-02-01", "value": 1.60 },
+        { "date": "2026-03-01", "value": 1.62 },
+        { "date": "2026-04-01", "value": 1.63 },
+        { "date": "2026-05-01", "value": 1.65 }
+      ]
+    },
+    {
+      "slug": "ngx-asi",
+      "observations": [
+        { "date": "2025-06-01", "value": 98420.50 },
+        { "date": "2025-07-01", "value": 101205.75 },
+        { "date": "2025-08-01", "value": 99850.10 },
+        { "date": "2025-09-01", "value": 103420.20 },
+        { "date": "2025-10-01", "value": 106780.40 },
+        { "date": "2025-11-01", "value": 109210.65 },
+        { "date": "2025-12-01", "value": 112540.80 },
+        { "date": "2026-01-01", "value": 115320.25 },
+        { "date": "2026-02-01", "value": 118450.60 },
+        { "date": "2026-03-01", "value": 121205.40 },
+        { "date": "2026-04-01", "value": 124880.15 },
+        { "date": "2026-05-01", "value": 127340.90 }
+      ]
+    },
+    {
+      "slug": "total-public-debt",
+      "observations": [
+        { "date": "2024-06-30", "value": 134.30 },
+        { "date": "2024-09-30", "value": 138.80 },
+        { "date": "2024-12-31", "value": 142.45 },
+        { "date": "2025-03-31", "value": 146.20 },
+        { "date": "2025-06-30", "value": 149.85 },
+        { "date": "2025-09-30", "value": 153.10 },
+        { "date": "2025-12-31", "value": 156.40 },
+        { "date": "2026-03-31", "value": 159.85 }
+      ]
+    },
+    {
+      "slug": "real-gdp-growth",
+      "observations": [
+        { "date": "2024-06-30", "value": 3.19 },
+        { "date": "2024-09-30", "value": 3.46 },
+        { "date": "2024-12-31", "value": 3.84 },
+        { "date": "2025-03-31", "value": 3.95 },
+        { "date": "2025-06-30", "value": 4.12 },
+        { "date": "2025-09-30", "value": 4.28 },
+        { "date": "2025-12-31", "value": 4.35 },
+        { "date": "2026-03-31", "value": 4.42 }
+      ]
+    }
+  ]
+}

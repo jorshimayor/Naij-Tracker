@@ -64,7 +64,16 @@ export async function fetchAllNassBills(): Promise<ScrapedBill[]> {
 
   while (true) {
     const url = `${BASE_URL}?draw=1&start=${start}&length=${PAGE_SIZE}`;
-    const raw = await fetchHtml(url, { skipRobots: true });
+    // The endpoint inspects X-Requested-With and Referer; without them it returns an empty
+    // data array (no error code) which is what caused the earlier silent regression.
+    const raw = await fetchHtml(url, {
+      skipRobots: true,
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'Accept': 'application/json',
+        'Referer': 'https://nass.gov.ng/documents/bills',
+      },
+    });
     let json: NassResponse;
     try {
       json = JSON.parse(raw) as NassResponse;

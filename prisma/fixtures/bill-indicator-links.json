@@ -1,0 +1,62 @@
+[
+  {
+    "billNumber": "SB.142",
+    "indicatorSlug": "real-gdp-growth",
+    "relevance": 0.7,
+    "note": "Targets indigenous tech sector growth via N100bn fund; expected GDP impact channel is ICT services."
+  },
+  {
+    "billNumber": "SB.142",
+    "indicatorSlug": "mpr",
+    "relevance": 0.4,
+    "note": "Provides patient capital outside commercial lending; alters effective borrowing costs for startups."
+  },
+  {
+    "billNumber": "HB.0421",
+    "indicatorSlug": "headline-cpi-yoy",
+    "relevance": 0.85,
+    "note": "Statutory biennial wage review explicitly indexed to inflation."
+  },
+  {
+    "billNumber": "HB.0421",
+    "indicatorSlug": "unemployment-rate",
+    "relevance": 0.5,
+    "note": "Minimum wage changes affect formal-sector hiring at the margin."
+  },
+  {
+    "billNumber": "HB.0317",
+    "indicatorSlug": "headline-cpi-yoy",
+    "relevance": 0.9,
+    "note": "Petroleum product pricing reform feeds directly into transport and food CPI."
+  },
+  {
+    "billNumber": "HB.0317",
+    "indicatorSlug": "food-cpi-yoy",
+    "relevance": 0.75,
+    "note": "PMS price changes pass through to food via transport cost."
+  },
+  {
+    "billNumber": "HB.0188",
+    "indicatorSlug": "faac-allocation",
+    "relevance": 0.7,
+    "note": "Earmarking fuel excise for FERMA reduces federation account inflows available for FAAC."
+  },
+  {
+    "billNumber": "SB.211",
+    "indicatorSlug": "faac-allocation",
+    "relevance": 0.6,
+    "note": "Increases federal contribution to Basic Health Care Provision Fund from 1% to 2% of CRF."
+  },
+  {
+    "billNumber": "SB.211",
+    "indicatorSlug": "total-public-debt",
+    "relevance": 0.4,
+    "note": "Recurrent spending increase; financing implications depend on the revenue trajectory."
+  },
+  {
+    "billNumber": "HB.0234",
+    "indicatorSlug": "debt-service-to-revenue",
+    "relevance": 0.3,
+    "note": "Improved contractor transparency may reduce leakages affecting federal revenue."
+  }
+]

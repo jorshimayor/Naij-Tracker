@@ -4,6 +4,8 @@ import type {
   JurisdictionStats,
   LegislatorDetail,
   TopicDetail,
+  IndicatorListResponse,
+  IndicatorDetail,
 } from './types';
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000';
@@ -35,6 +37,7 @@ async function safeFetchJson<T>(path: string, fallback: T, init?: RequestInit): 
 
 // Empty/default shapes used when the API is unreachable.
 const EMPTY_BILLS: BillListResponse = { total: 0, limit: 0, offset: 0, results: [] };
+const EMPTY_INDICATORS: IndicatorListResponse = { total: 0, results: [] };
 const EMPTY_STATS: JurisdictionStats = {
   totalBills: 0,
   totalSensitive: 0,
@@ -93,6 +96,32 @@ export const api = {
   }> {
     return safeFetchJson(`/api/representatives/states`, EMPTY_STATES);
   },
+  stateStats(): Promise<{ states: { nameKey: string; senators: number; reps: number; bills: number; indicators: number }[] }> {
+    return safeFetchJson(`/api/representatives/state-stats`, { states: [] });
+  },
+  getStateDetail(name: string): Promise<{
+    state: string;
+    senators: { slug: string; fullName: string; party: string | null; constituency: string | null; photoUrl: string | null; contactEmail: string | null; state: string | null }[];
+    reps: { slug: string; fullName: string; party: string | null; constituency: string | null; photoUrl: string | null; contactEmail: string | null; state: string | null }[];
+    stateAssemblies: { slug: string; name: string }[];
+    stateAssemblyBills: { billNumber: string; title: string; slug: string; currentStage: string; jurisdiction: { slug: string; name: string }; lastActionDate: string | null }[];
+    indicators: { slug: string; name: string }[];
+  }> {
+    return strictFetchJson(`/api/representatives/states/${encodeURIComponent(name)}`);
+  },
+
+  listIndicators(params?: { pillar?: string; source?: string }): Promise<IndicatorListResponse> {
+    const qs = new URLSearchParams();
+    for (const [k, v] of Object.entries(params ?? {})) {
+      if (v !== undefined && v !== '') qs.set(k, v);
+    }
+    const search = qs.toString();
+    return safeFetchJson(`/api/indicators${search ? `?${search}` : ''}`, EMPTY_INDICATORS);
+  },
+  getIndicator(slug: string): Promise<IndicatorDetail> {
+    return strictFetchJson<IndicatorDetail>(`/api/indicators/${slug}`);
+  },
+
   lookupRep(state: string, lga: string): Promise<{
     meta: { note: string; lastUpdated: string };
     state: { code: string; name: string };
